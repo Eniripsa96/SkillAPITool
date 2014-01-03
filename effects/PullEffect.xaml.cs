@@ -22,8 +22,8 @@ namespace SkillAPITool {
         /// </summary>
         public PullEffect() {
             InitializeComponent();
-            pullBaseBox.TextChanged += Filter.FilterInt;
-            pullBonusBox.TextChanged += Filter.FilterInt;
+            pullBaseBox.TextChanged += Filter.FilterDouble;
+            pullBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Pull Speed", int.Parse(pullBaseBox.Text), int.Parse(pullBonusBox.Text)));
+            list.Add(new Attribute("Pull Speed", double.Parse(pullBaseBox.Text), double.Parse(pullBonusBox.Text)));
         }
 
         /// <summary>
@@ -131,6 +131,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

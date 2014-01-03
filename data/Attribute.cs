@@ -11,8 +11,8 @@ namespace SkillAPITool {
     public class Attribute {
 
         private string key;
-        private int initial;
-        private int scale;
+        private double initial;
+        private double scale;
 
         /// <summary>
         /// Key of the attribute
@@ -25,7 +25,7 @@ namespace SkillAPITool {
         /// <summary>
         /// Initial value of the attribute
         /// </summary>
-        public int Initial {
+        public double Initial {
             get { return initial; }
             set { initial = value; }
         }
@@ -33,7 +33,7 @@ namespace SkillAPITool {
         /// <summary>
         /// Bonus value per level
         /// </summary>
-        public int Scale {
+        public double Scale {
             get { return scale; }
             set { scale = value; }
         }
@@ -44,7 +44,7 @@ namespace SkillAPITool {
         /// <param name="key">attribute key</param>
         /// <param name="initial">initial value</param>
         /// <param name="scale">bonus value per level</param>
-        public Attribute(string key, int initial, int scale) {
+        public Attribute(string key, double initial, double scale) {
             this.key = key;
             this.initial = initial;
             this.scale = scale;

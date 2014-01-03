@@ -24,10 +24,10 @@ namespace SkillAPITool {
             InitializeComponent();
             damageBaseBox.TextChanged += Filter.FilterInt;
             damageBonusBox.TextChanged += Filter.FilterInt;
-            durationBaseBox.TextChanged += Filter.FilterInt;
-            durationBonusBox.TextChanged += Filter.FilterInt;
-            freqBaseBox.TextChanged += Filter.FilterInt;
-            freqBonusBox.TextChanged += Filter.FilterNInt;
+            durationBaseBox.TextChanged += Filter.FilterDouble;
+            durationBonusBox.TextChanged += Filter.FilterDouble;
+            freqBaseBox.TextChanged += Filter.FilterDouble;
+            freqBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -101,8 +101,8 @@ namespace SkillAPITool {
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
             list.Add(new Attribute("DOT Damage", int.Parse(damageBaseBox.Text), int.Parse(damageBonusBox.Text)));
-            list.Add(new Attribute("DOT Duration", int.Parse(durationBaseBox.Text), int.Parse(durationBonusBox.Text)));
-            list.Add(new Attribute("DOT Frequency", int.Parse(freqBaseBox.Text), int.Parse(freqBonusBox.Text)));
+            list.Add(new Attribute("DOT Duration", double.Parse(durationBaseBox.Text), double.Parse(durationBonusBox.Text)));
+            list.Add(new Attribute("DOT Frequency", double.Parse(freqBaseBox.Text), double.Parse(freqBonusBox.Text)));
         }
 
         /// <summary>
@@ -151,6 +151,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

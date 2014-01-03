@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="SkillAPITool.AttackModifierEffect"
+﻿<UserControl x:Class="SkillAPITool.DefenseModifierEffect"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="519" VerticalAlignment="Top" Height="352" Background="White">
+    d:DesignHeight="300" d:DesignWidth="519" VerticalAlignment="Top" Height="354" Background="White">
 
     <Grid Background="White">
         <Grid Background="Black" Margin="6">
@@ -37,7 +37,7 @@
                 <ComboBoxItem Content="All" />
             </ComboBox>
             <sdk:Label Content="Target Group" FontFamily="../Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,68,217,0" Name="label2" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
-            <sdk:Label Content="Attack Modifier" FontFamily="../Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="#FFFFAB3C" Height="27" Margin="6,6,6,0" Name="label6" Padding="3,0" VerticalAlignment="Top" BorderBrush="{x:Null}" />
+            <sdk:Label Content="Defense Modifier" FontFamily="../Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="#FFFFAB3C" Height="27" Margin="6,6,6,0" Name="label6" Padding="3,0" VerticalAlignment="Top" BorderBrush="{x:Null}" />
             <sdk:Label Content="Duration" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,128,217,0" Name="label7" Padding="3,0" VerticalAlignment="Top" />
             <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,128,106,0" Name="durationBaseBox" Padding="2,0" Text="5" VerticalAlignment="Top" Width="105" FontFamily="../Sertig.otf#Sertig" />
             <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,128,74,0" Name="label8" Padding="0" VerticalAlignment="Top" Width="26" />
@@ -60,13 +60,13 @@
             <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,158,74,0" Name="label5" Padding="0" VerticalAlignment="Top" Width="26" />
             <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,158,18,0" Name="attackBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" FontFamily="../Sertig.otf#Sertig" />
             <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,158,6,0" Name="label10" Padding="0" VerticalAlignment="Top" Width="16" />
-            <sdk:Label Content="Embedded effects on attack" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,220,217,0" Name="label11" Padding="3,0" VerticalAlignment="Top" />
-            <sdk:Label Content="Chance" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,189,217,0" Name="chance" Padding="3,0" VerticalAlignment="Top" />
-            <TextBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,189,106,0" Name="chanceBaseBox" Padding="2,0" Text="100" VerticalAlignment="Top" Width="105" />
+            <sdk:Label Content="Embedded effects when hit" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,220,18,0" Name="label11" Padding="3,0" VerticalAlignment="Top" />
+            <sdk:Label Content="Chance" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,189,217,0" Name="label12" Padding="3,0" VerticalAlignment="Top" />
+            <TextBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,189,106,0" Name="chanceBaseBox" Padding="2,0" Text="1" VerticalAlignment="Top" Width="105" />
             <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,189,74,0" Name="label13" Padding="0" VerticalAlignment="Top" Width="26" />
             <TextBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,189,18,0" Name="chanceBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" />
             <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,189,6,0" Name="label14" Padding="0" VerticalAlignment="Top" Width="16" />
-            <sdk:Label Content="Conflicts with Defense Modifier effects with the same target type" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,250,6,0" Name="label12" Padding="3,0" VerticalAlignment="Top" />
+            <sdk:Label Content="Conflicts with Attack Modifier effects with the same target type" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,250,6,0" Name="label15" Padding="3,0" VerticalAlignment="Top" />
         </Grid>
     </Grid>
 </UserControl>

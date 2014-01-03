@@ -9,7 +9,7 @@
 
     <Grid Background="White">
         <Grid Background="Black" Margin="6">
-            <sdk:Label Content="Projectile" FontFamily="../Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="Lime" Height="24" Margin="6,6,160,0" Name="label6" Padding="3,0" VerticalAlignment="Top" />
+            <sdk:Label Content="Projectile" FontFamily="../Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="#FFFFAB3C" Height="24" Margin="6,6,160,0" Name="label6" Padding="3,0" VerticalAlignment="Top" />
             <sdk:Label Content="Speed" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Margin="6,98,162,0" Name="label7" Padding="3,0" Height="23" VerticalAlignment="Top" />
             <TextBox FontSize="18" FontWeight="Normal" HorizontalAlignment="Right" Margin="0,98,104,0" Name="speedBaseBox" Padding="2,0" Text="3" Width="107" Height="23" VerticalAlignment="Top" FontFamily="../Sertig.otf#Sertig" />
             <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,98,74,0" Name="label8" Padding="0" VerticalAlignment="Top" Width="24" />

@@ -22,10 +22,10 @@ namespace SkillAPITool {
         /// </summary>
         public LaunchEffect() {
             InitializeComponent();
-            vSpeedBaseBox.TextChanged += Filter.FilterNInt;
-            vSpeedBonusBox.TextChanged += Filter.FilterNInt;
-            hSpeedBaseBox.TextChanged += Filter.FilterNInt;
-            hSpeedBonusBox.TextChanged += Filter.FilterNInt;
+            vSpeedBaseBox.TextChanged += Filter.FilterDouble;
+            vSpeedBonusBox.TextChanged += Filter.FilterDouble;
+            hSpeedBaseBox.TextChanged += Filter.FilterDouble;
+            hSpeedBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -98,8 +98,8 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Vertical Speed", int.Parse(vSpeedBaseBox.Text), int.Parse(vSpeedBonusBox.Text)));
-            list.Add(new Attribute("Horizontal Speed", int.Parse(hSpeedBaseBox.Text), int.Parse(hSpeedBonusBox.Text)));
+            list.Add(new Attribute("Vertical Speed", double.Parse(vSpeedBaseBox.Text), double.Parse(vSpeedBonusBox.Text)));
+            list.Add(new Attribute("Horizontal Speed", double.Parse(hSpeedBaseBox.Text), double.Parse(hSpeedBonusBox.Text)));
         }
 
         /// <summary>
@@ -138,6 +138,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

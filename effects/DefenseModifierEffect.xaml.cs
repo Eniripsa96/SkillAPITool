@@ -15,13 +15,19 @@ namespace SkillAPITool {
     /// <summary>
     /// Damage effect
     /// </summary>
-    public partial class TeleportTargetEffect : IEffect {
+    public partial class DefenseModifierEffect : IEffect, IEmbedable {
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public TeleportTargetEffect() {
+        public DefenseModifierEffect() {
             InitializeComponent();
+            durationBaseBox.TextChanged += Filter.FilterDouble;
+            durationBonusBox.TextChanged += Filter.FilterDouble;
+            attackBaseBox.TextChanged += Filter.FilterInt;
+            attackBonusBox.TextChanged += Filter.FilterInt;
+            chanceBaseBox.TextChanged += Filter.FilterDouble;
+            chanceBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -29,7 +35,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <param name="target">target</param>
         /// <param name="group">group</param>
-        public TeleportTargetEffect(string target, string group) 
+        public DefenseModifierEffect(string target, string group) 
             : this() 
         {
             foreach (object obj in targetBox.Items) {
@@ -70,7 +76,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>key</returns>
         public string GetKey() {
-            return "TeleportTarget";
+            return "DefenseModifier";
         }
 
         /// <summary>
@@ -93,25 +99,50 @@ namespace SkillAPITool {
         /// Gets the attributes for the skill
         /// </summary>
         /// <returns>attribute list</returns>
-        public void GetAttributes(List<Attribute> list) { }
+        public void GetAttributes(List<Attribute> list) {
+            list.Add(new Attribute("Modifier Duration", double.Parse(durationBaseBox.Text), double.Parse(durationBonusBox.Text)));
+            list.Add(new Attribute("Attacks", int.Parse(attackBaseBox.Text), int.Parse(attackBonusBox.Text)));
+            if (double.Parse(chanceBaseBox.Text) < 100) {
+                list.Add(new Attribute("Modifier Chance", double.Parse(chanceBaseBox.Text), double.Parse(chanceBonusBox.Text)));
+            }
+        }
 
         /// <summary>
         /// Gets the values for the skill
         /// </summary>
         /// <returns>value list</returns>
-        public void GetValues(List<Value> list) { }
+        public void GetValues(List<Value> list) { 
+            list.Add(new Value("Attack Type", typeBox.SelectedIndex));
+        }
 
         /// <summary>
         /// Applies a loaded attribute
         /// </summary>
         /// <param name="attribute">attribute</param>
-        public void ApplyAttribute(Attribute attribute) { }
+        public void ApplyAttribute(Attribute attribute) {
+            if (attribute.Key.EndsWith("Modifier Duration")) {
+                durationBaseBox.Text = attribute.Initial.ToString();
+                durationBonusBox.Text = attribute.Scale.ToString();
+            }
+            else if (attribute.Key.EndsWith("Attacks")) {
+                attackBaseBox.Text = attribute.Initial.ToString();
+                attackBonusBox.Text = attribute.Scale.ToString();
+            }
+            else if (attribute.Key.EndsWith("Modifier Chance")) {
+                chanceBaseBox.Text = attribute.Initial.ToString();
+                chanceBonusBox.Text = attribute.Scale.ToString();
+            }
+        }
 
         /// <summary>
         /// Applies a loaded value
         /// </summary>
         /// <param name="value">value</param>
-        public void ApplyValue(Value value) { }
+        public void ApplyValue(Value value) {
+            if (value.Key.Equals("Attack Type")) {
+                typeBox.SelectedIndex = value.Number;
+            }
+        }
 
         /// <summary>
         /// Sets visibility when target changes

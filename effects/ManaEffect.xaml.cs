@@ -96,7 +96,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Mana", int.Parse(manaBaseBox.Text), int.Parse(manaBonusBox.Text)));
+            list.Add(new Attribute("Mana Amount", int.Parse(manaBaseBox.Text), int.Parse(manaBonusBox.Text)));
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <param name="attribute">attribute</param>
         public void ApplyAttribute(Attribute attribute) {
-            if (attribute.Key.EndsWith("Mana")) {
+            if (attribute.Key.EndsWith("Mana Amount")) {
                 manaBaseBox.Text = attribute.Initial.ToString();
                 manaBonusBox.Text = attribute.Scale.ToString();
             }
@@ -131,6 +131,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

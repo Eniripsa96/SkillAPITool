@@ -24,8 +24,8 @@ namespace SkillAPITool {
             InitializeComponent();
             tierBaseBox.TextChanged += Filter.FilterInt;
             tierBonusBox.TextChanged += Filter.FilterInt;
-            durationBaseBox.TextChanged += Filter.FilterInt;
-            durationBonusBox.TextChanged += Filter.FilterInt;
+            durationBaseBox.TextChanged += Filter.FilterDouble;
+            durationBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace SkillAPITool {
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
             list.Add(new Attribute("Tier", int.Parse(tierBaseBox.Text), int.Parse(tierBonusBox.Text)));
-            list.Add(new Attribute("Duration", int.Parse(durationBaseBox.Text), int.Parse(durationBonusBox.Text)));
+            list.Add(new Attribute("Duration", double.Parse(durationBaseBox.Text), double.Parse(durationBonusBox.Text)));
         }
 
         /// <summary>
@@ -151,6 +151,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

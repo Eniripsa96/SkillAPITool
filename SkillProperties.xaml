@@ -5,13 +5,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     mc:Ignorable="d"
-    d:DesignHeight="520" d:DesignWidth="530" >
+    d:DesignHeight="545" d:DesignWidth="530" >
     
     <Grid x:Name="LayoutRoot" Background="Black">
         <sdk:TabControl Name="tabControl1">
             <sdk:TabItem Header="Details" Name="tabItem1" Background="Black" Foreground="Black" FontFamily="Sertig.otf#Sertig" FontSize="22" FontWeight="Bold" BorderBrush="Black" Padding="25,2">
                 <Grid Background="#FF2D2D2D">
-                    <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,35,6,0" Name="typeBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="178" FontFamily="Sertig.otf#Sertig">
+                    <sdk:Label Content="Skill Name" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,6,190,0" Name="label6" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The name of your skill displayed in skill trees and used in commands" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,6,6,0" Name="nameBox" Text="" VerticalAlignment="Top" Width="178" Padding="2,0" TextChanged="NameChanged" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="Skill Type" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,35,190,0" Name="label1" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The described type of your skill (purely aesthetic, doesn't affect mechanics)" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,37,6,0" Name="typeBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="178" FontFamily="Sertig.otf#Sertig">
                         <ComboBox.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="Black" Offset="0" />
@@ -24,13 +35,78 @@
                         <ComboBoxItem Content="Skill Shot AOE" />
                         <ComboBoxItem Content="Passive" />
                     </ComboBox>
-                    <sdk:Label Content="Skill Type" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,35,190,0" Name="label1" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
-                    <sdk:Label Content="Indicator" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,64,190,0" Name="label2" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
+                    <sdk:Label Content="Indicator" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,64,190,0" Name="label2" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The type of item to represent your skill in a skill tree" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
                     <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,64,6,0" Name="indicatorBox" Text="Apple" VerticalAlignment="Top" Width="178" Background="White" Padding="2,0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="Max Level" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,124,190,0" Name="label3" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
+                    <sdk:Label Content="Required Items" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,94,190,0" Name="label5" Padding="3,0" VerticalAlignment="Top" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Items that are needed to use the skill, separated by commas" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,94,6,0" MaxWidth="Infinity" MinHeight="0" Name="itemReqBox" Padding="2,0" Text="" VerticalAlignment="Top" Width="178" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="Max Level" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,124,190,0" Name="label3" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The maximum level your skill can reach" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
                     <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,124,6,0" Name="maxLevelBox" Text="5" VerticalAlignment="Top" Width="178" Padding="2,0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="Skill Required" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,304,190,0" Name="label4" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
-                    <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,304,6,0" Name="requiredSkillBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="178" SelectionChanged="RequiredSkillChanged" FontFamily="Sertig.otf#Sertig">
+                    <sdk:Label Content="Description" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,154,190,0" Name="label7" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The description for you skill to be shown in skill trees" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" IsReadOnly="False" Margin="0,154,6,0" Name="descriptionBox" Text="" VerticalAlignment="Top" Width="178" Padding="2,0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="Cast Message" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,184,190,0" Name="label20" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The message to display when casting the skill" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" IsReadOnly="False" Margin="0,184,6,0" Name="messageBox" Text="" VerticalAlignment="Top" Width="178" Padding="2,0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="Level Requirement" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,214,190,0" Name="label8" Padding="3,0" VerticalAlignment="Top" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The class level required to level up your skill" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,214,99,0" Name="levelBaseBox" Padding="2,0" Text="1" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,214,71,0" Name="label10" Padding="3" VerticalAlignment="Top" Width="22" />
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,214,18,0" Name="levelBonusBox" Padding="2,0" Text="1" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" HorizontalAlignment="Right" Margin="0,214,6,0" Name="label11" Padding="3" Width="16" Height="23" VerticalAlignment="Top" />
+                    <sdk:Label Content="Skill Point Cost" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,244,190,0" Name="label9" Padding="3,0" VerticalAlignment="Top" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="How many skill points it costs to level up your skill" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,244,99,0" Name="costBaseBox" Padding="2,0" Text="1" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,244,71,0" Name="label12" Padding="3" VerticalAlignment="Top" Width="22" />
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,244,18,0" Name="costBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,244,6,0" Name="label13" Padding="3" VerticalAlignment="Top" Width="16" />
+                    <sdk:Label Content="Mana Cost" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,274,190,0" Name="label14" Padding="3,0" VerticalAlignment="Top" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="How much mana it costs to use your skill" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,274,99,0" Name="manaBaseBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,274,71,0" Name="label16" Padding="3" VerticalAlignment="Top" Width="22" />
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,274,18,0" Name="manaBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,274,6,0" Name="label17" Padding="3" VerticalAlignment="Top" Width="16" />
+                    <sdk:Label Content="Cooldown" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,304,190,0" Name="label15" Padding="3,0" VerticalAlignment="Top" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="How long in seconds  to wait before the skill can be used again" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,304,99,0" Name="cooldownBaseBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,304,71,0" Name="label18" Padding="3" VerticalAlignment="Top" Width="22" />
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,304,18,0" Name="cooldownBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,304,6,0" Name="label19" Padding="3" VerticalAlignment="Top" Width="16" />
+                    <sdk:Label Content="Skill Required" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,334,190,0" Name="label4" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The skill that needs to be leveled up before this one" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,334,6,0" Name="requiredSkillBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="178" SelectionChanged="RequiredSkillChanged" FontFamily="Sertig.otf#Sertig">
                         <ComboBox.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="Black" Offset="0" />
@@ -39,44 +115,39 @@
                         </ComboBox.Background>
                         <ComboBoxItem Content="None" />
                     </ComboBox>
-                    <sdk:Label Content="Skill Name" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,6,190,0" Name="label6" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
-                    <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,6,6,0" Name="nameBox" Text="" VerticalAlignment="Top" Width="178" Padding="2,0" TextChanged="NameChanged" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="Description" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,154,190,0" Name="label7" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
-                    <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" IsReadOnly="False" Margin="0,154,6,0" Name="descriptionBox" Text="" VerticalAlignment="Top" Width="178" Padding="2,0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="Required Level" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,334,190,0" Name="requiredLevelLabel" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
-                    <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,334,6,0" Name="requiredLevelBox" Text="1" VerticalAlignment="Top" Width="178" MinHeight="0" MaxWidth="Infinity" Padding="2,0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="Required Items" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,94,190,0" Name="label5" Padding="3,0" VerticalAlignment="Top" />
-                    <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,94,6,0" MaxWidth="Infinity" MinHeight="0" Name="itemReqBox" Padding="2,0" Text="" VerticalAlignment="Top" Width="178" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="Range" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,364,190,0" Name="rangeLabel" Padding="3,0" VerticalAlignment="Top" />
-                    <sdk:Label Content="Radius" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,394,190,0" Name="radiusLabel" Padding="3,0" VerticalAlignment="Top" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,364,99,0" Name="rangeBaseBox" Padding="2,0" Text="8" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,364,71,0" Name="rangeLabel1" Padding="3" VerticalAlignment="Top" Width="22" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,364,18,0" Name="rangeBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" HorizontalAlignment="Right" Margin="0,364,6,0" Name="rangeLabel2" Padding="3" Width="16" Height="23" VerticalAlignment="Top" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,394,99,0" Name="radiusBaseBox" Padding="2,0" Text="5" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,394,71,0" Name="radiusLabel1" Padding="3" VerticalAlignment="Top" Width="22" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,394,18,0" Name="radiusBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,394,6,0" Name="radiusLabel2" Padding="3" VerticalAlignment="Top" Width="16" />
-                    <sdk:Label Content="Level Requirement" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,184,190,0" Name="label8" Padding="3,0" VerticalAlignment="Top" />
-                    <sdk:Label Content="Skill Point Cost" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,214,190,0" Name="label9" Padding="3,0" VerticalAlignment="Top" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,184,99,0" Name="levelBaseBox" Padding="2,0" Text="1" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,184,71,0" Name="label10" Padding="3" VerticalAlignment="Top" Width="22" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,184,18,0" Name="levelBonusBox" Padding="2,0" Text="1" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" HorizontalAlignment="Right" Margin="0,184,6,0" Name="label11" Padding="3" Width="16" Height="23" VerticalAlignment="Top" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,214,99,0" Name="costBaseBox" Padding="2,0" Text="1" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,214,71,0" Name="label12" Padding="3" VerticalAlignment="Top" Width="22" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,214,18,0" Name="costBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,214,6,0" Name="label13" Padding="3" VerticalAlignment="Top" Width="16" />
-                    <sdk:Label Content="Mana Cost" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,244,190,0" Name="label14" Padding="3,0" VerticalAlignment="Top" />
-                    <sdk:Label Content="Cooldown" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,274,190,0" Name="label15" Padding="3,0" VerticalAlignment="Top" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,244,99,0" Name="manaBaseBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,244,71,0" Name="label16" Padding="3" VerticalAlignment="Top" Width="22" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,244,18,0" Name="manaBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,244,6,0" Name="label17" Padding="3" VerticalAlignment="Top" Width="16" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,274,99,0" Name="cooldownBaseBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,274,71,0" Name="label18" Padding="3" VerticalAlignment="Top" Width="22" />
-                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,274,18,0" Name="cooldownBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
-                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,274,6,0" Name="label19" Padding="3" VerticalAlignment="Top" Width="16" />
+                    <sdk:Label Content="Required Skill Level" FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,367,190,0" Name="requiredLevelLabel" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The level of the required skill that is needed" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,364,6,0" Name="requiredLevelBox" Text="1" VerticalAlignment="Top" Width="178" MinHeight="0" MaxWidth="Infinity" Padding="2,0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="Range" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,394,190,0" Name="rangeLabel" Padding="3,0" VerticalAlignment="Top" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The distance in blocks for Linear, Target, and Target Area types" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,394,99,0" Name="rangeBaseBox" Padding="2,0" Text="8" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,394,71,0" Name="rangeLabel1" Padding="3" VerticalAlignment="Top" Width="22" />
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,394,18,0" Name="rangeBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" HorizontalAlignment="Right" Margin="0,394,6,0" Name="rangeLabel2" Padding="3" Width="16" Height="23" VerticalAlignment="Top" />
+                    <sdk:Label Content="Radius" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,424,190,0" Name="radiusLabel" Padding="3,0" VerticalAlignment="Top" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="The size of the area in blocks for Area and Target Area types" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,424,99,0" Name="radiusBaseBox" Padding="2,0" Text="5" VerticalAlignment="Top" Width="85" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,424,71,0" Name="radiusLabel1" Padding="3" VerticalAlignment="Top" Width="22" />
+                    <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,424,18,0" Name="radiusBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" MaxLength="0" FontFamily="Sertig.otf#Sertig" />
+                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,424,6,0" Name="radiusLabel2" Padding="3" VerticalAlignment="Top" Width="16" />
+                    <sdk:Label Content="Period" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,456,190,0" Name="periodLabel" Padding="3,0" VerticalAlignment="Top" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="How frequently to reapply passive effects" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                        </ToolTipService.ToolTip>
+                    </sdk:Label>
+                    <TextBox FontFamily="Sertig.otf#Sertig" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,456,99,0" MaxLength="0" Name="periodBaseBox" Padding="2,0" Text="3" VerticalAlignment="Top" Width="85" />
+                    <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,456,71,0" Name="periodLabel1" Padding="3" VerticalAlignment="Top" Width="22" />
+                    <TextBox FontFamily="Sertig.otf#Sertig" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,456,18,0" MaxLength="0" Name="periodBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" />
+                    <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,456,6,0" Name="periodLabel2" Padding="3" VerticalAlignment="Top" Width="16" />
                 </Grid>
             </sdk:TabItem>
             <sdk:TabItem Background="Black" BorderBrush="Black" Foreground="Black" Header="Active Effects" FontSize="22" FontWeight="Bold" FontFamily="Sertig.otf#Sertig" Padding="10,2">
@@ -97,6 +168,7 @@
                         <ComboBoxItem Content="DamagePercent" />
                         <ComboBoxItem Content="DamageReduction" />
                         <ComboBoxItem Content="DamagePercentReduction" />
+                        <ComboBoxItem Content="DefenseModifier" />
                         <ComboBoxItem Content="Delay" />
                         <ComboBoxItem Content="DOT" />
                         <ComboBoxItem Content="Fire" />
@@ -107,6 +179,7 @@
                         <ComboBoxItem Content="Mana" />
                         <ComboBoxItem Content="ManaDamage" />
                         <ComboBoxItem Content="Particle" />
+                        <ComboBoxItem Content="ParticleProjectile" />
                         <ComboBoxItem Content="Potion" />
                         <ComboBoxItem Content="Projectile" />
                         <ComboBoxItem Content="Pull" />
@@ -139,6 +212,7 @@
                         <ComboBoxItem Content="DamagePercent" />
                         <ComboBoxItem Content="DamageReduction" />
                         <ComboBoxItem Content="DamagePercentReduction" />
+                        <ComboBoxItem Content="DefenseModifier" />
                         <ComboBoxItem Content="Delay" />
                         <ComboBoxItem Content="DOT" />
                         <ComboBoxItem Content="Fire" />
@@ -149,6 +223,7 @@
                         <ComboBoxItem Content="Mana" />
                         <ComboBoxItem Content="ManaDamage" />
                         <ComboBoxItem Content="Particle" />
+                        <ComboBoxItem Content="ParticleProjectile" />
                         <ComboBoxItem Content="Potion" />
                         <ComboBoxItem Content="Projectile" />
                         <ComboBoxItem Content="Pull" />
@@ -171,8 +246,8 @@
                                 <GradientStop Color="#FF3A3A3A" Offset="1" />
                             </LinearGradientBrush>
                         </ComboBox.Background>
-                        <ComboBoxItem Content="Damage" />
                         <ComboBoxItem Content="Cleanse" />
+                        <ComboBoxItem Content="Damage" />
                         <ComboBoxItem Content="DamageBonus" />
                         <ComboBoxItem Content="DamagePercent" />
                         <ComboBoxItem Content="DamageReduction" />

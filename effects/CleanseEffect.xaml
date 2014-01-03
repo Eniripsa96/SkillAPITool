@@ -36,10 +36,10 @@
                 <ComboBoxItem Content="All" />
             </ComboBox>
             <sdk:Label Content="Target Group" FontFamily="../Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,68,160,0" Name="label2" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
-            <sdk:Label Content="Cleanse" FontFamily="../Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="Lime" Height="27" Margin="6,6,160,0" Name="label6" Padding="3,0" VerticalAlignment="Top" />
+            <sdk:Label Content="Cleanse" FontFamily="../Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="#FFFFAB3C" Height="27" Margin="6,6,160,0" Name="label6" Padding="3,0" VerticalAlignment="Top" />
             <Button Background="White" BorderBrush="White" BorderThickness="1" Content="Remove" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="Red" Height="29" HorizontalAlignment="Right" Margin="0,0,6,6" Name="removeButton" VerticalAlignment="Bottom" Width="205" Click="Removed" />
-            <ScrollViewer HorizontalAlignment="Left" Margin="6,127,0,41" Name="effectScroll" Width="501" IsHitTestVisible="False">
-                <Grid Height="Auto" Name="optionGrid" Width="Auto">
+            <ScrollViewer HorizontalAlignment="Left" Margin="6,127,0,41" Name="effectScroll" Width="501" IsHitTestVisible="True">
+                <Grid Name="optionGrid">
                     <CheckBox Content="Absorb" FontFamily="Sertig.otf#Sertig" FontSize="16" FontWeight="Bold" Foreground="White" Height="Auto" HorizontalAlignment="Stretch" Margin="6,6,6,117" Name="optionBox" Padding="5,0" VerticalAlignment="Top" IsHitTestVisible="True" />
                     <CheckBox Content="Curse" FontFamily="Sertig.otf#Sertig" FontSize="16" FontWeight="Bold" Foreground="White" Height="Auto" HorizontalAlignment="Stretch" Margin="6,34,6,89" Name="checkBox1" Padding="5,0" VerticalAlignment="Top" IsHitTestVisible="True" />
                     <CheckBox Content="Disarm" FontFamily="Sertig.otf#Sertig" FontSize="16" FontWeight="Bold" Foreground="White" Height="Auto" HorizontalAlignment="Stretch" Margin="6,62,6,61" Name="checkBox2" Padding="5,0" VerticalAlignment="Top" />

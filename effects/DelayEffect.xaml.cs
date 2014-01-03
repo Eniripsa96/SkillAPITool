@@ -22,8 +22,8 @@ namespace SkillAPITool {
         /// </summary>
         public DelayEffect() {
             InitializeComponent();
-            delayBaseBox.TextChanged += Filter.FilterInt;
-            delayBonusBox.TextChanged += Filter.FilterInt;
+            delayBaseBox.TextChanged += Filter.FilterDouble;
+            delayBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Delay", int.Parse(delayBaseBox.Text), int.Parse(delayBonusBox.Text)));
+            list.Add(new Attribute("Delay", double.Parse(delayBaseBox.Text), double.Parse(delayBonusBox.Text)));
         }
 
         /// <summary>
@@ -131,6 +131,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

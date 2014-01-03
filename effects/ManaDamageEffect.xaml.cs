@@ -22,8 +22,8 @@ namespace SkillAPITool {
         /// </summary>
         public ManaDamageEffect() {
             InitializeComponent();
-            percentBaseBox.TextChanged += Filter.FilterInt;
-            percentBonusBox.TextChanged += Filter.FilterInt;
+            percentBaseBox.TextChanged += Filter.FilterDouble;
+            percentBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Mana Percent", int.Parse(percentBaseBox.Text), int.Parse(percentBonusBox.Text)));
+            list.Add(new Attribute("Mana Percent", double.Parse(percentBaseBox.Text), double.Parse(percentBonusBox.Text)));
         }
 
         /// <summary>
@@ -139,6 +139,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

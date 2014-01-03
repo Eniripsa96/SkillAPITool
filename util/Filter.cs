@@ -17,6 +17,7 @@ namespace SkillAPITool {
         private static readonly SolidColorBrush INVALID_BRUSH = new SolidColorBrush(Color.FromArgb((byte)255, (byte)255, (byte)85, (byte)85));
 
         private static readonly int[] INT_RANGE = new int[] { 48, 57 };
+        private static readonly int[] DOUBLE_RANGE = new int[] { 46, 46, 48, 57 };
         private static readonly int[] WORD_RANGE = new int[] { 32, 32, 48, 57, 65, 90, 97, 122 };
 
         private static readonly char[] LIST_SPLIT = new char[] { ',' };
@@ -55,7 +56,7 @@ namespace SkillAPITool {
             bool negative = false;
             string nCheck = box.Text;
             while (nCheck.Contains('-')) {
-                nCheck = nCheck.Substring(0, nCheck.IndexOf('-')) + nCheck.Substring(nCheck.IndexOf('-') + 1);
+                nCheck = nCheck.Remove(nCheck.IndexOf('-'), 1);
                 negative = !negative;
             }
             string content = FilterRange(box, INT_RANGE);
@@ -64,6 +65,71 @@ namespace SkillAPITool {
             // If no text was valid, make it 0
             if (content.Length == 0) content = "0";
             
+            // Negative numbers
+            if (negative) content = "-" + content;
+
+            // Update box
+            if (box.Text != content) {
+                box.Text = content;
+                box.SelectionStart = box.Text.Length;
+            }
+        }
+
+        /// <summary>
+        /// Filters a text box to only include double values
+        /// </summary>
+        /// <param name="sender">text box</param>
+        /// <param name="e">event details</param>
+        public static void FilterDouble(object sender, RoutedEventArgs e) {
+            TextBox box = (TextBox)sender;
+
+            // Filter the text
+            string content = FilterRange(box, DOUBLE_RANGE);
+            while (content.Length > 1 && content[0] == '0' && content[1] != '.') content = content.Substring(1);
+
+            // If no text was valid, make it 0
+            if (content.Length == 0 || content[0] == '.') content = "0" + content;
+
+            // Prevent multiple decimal points
+            int first = content.IndexOf('.');
+            int last = content.LastIndexOf('.');
+            if (first != last) content = content.Remove(last, 1);
+
+            // Update box
+            if (box.Text != content) {
+                box.Text = content;
+                box.SelectionStart = box.Text.Length;
+            }
+        }
+
+        /// <summary>
+        /// Filters a negative integer value
+        /// </summary>
+        /// <param name="sender">text box</param>
+        /// <param name="e">event details</param>
+        public static void FilterNDouble(object sender, RoutedEventArgs e) {
+            TextBox box = (TextBox)sender;
+
+            // Filter the text
+            bool negative = false;
+            string nCheck = box.Text;
+            while (nCheck.Contains('-')) {
+                nCheck = nCheck.Remove(nCheck.IndexOf('-'), 1);
+                negative = !negative;
+            }
+
+            // Filter the text
+            string content = FilterRange(box, DOUBLE_RANGE);
+            while (content.Length > 1 && content[0] == '0' && content[1] != '.') content = content.Substring(1);
+
+            // If no text was valid, make it 0
+            if (content.Length == 0 || content[0] == '.') content = "0" + content;
+
+            // Prevent multiple decimal points
+            int first = content.IndexOf('.');
+            int last = content.LastIndexOf('.');
+            if (first != last) content = content.Remove(last, 1);
+
             // Negative numbers
             if (negative) content = "-" + content;
 

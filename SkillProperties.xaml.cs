@@ -37,12 +37,14 @@ namespace SkillAPITool {
             costBonusBox.TextChanged += Filter.FilterNInt;
             manaBaseBox.TextChanged += Filter.FilterInt;
             manaBonusBox.TextChanged += Filter.FilterNInt;
-            cooldownBaseBox.TextChanged += Filter.FilterInt;
-            cooldownBonusBox.TextChanged += Filter.FilterNInt;
-            rangeBaseBox.TextChanged += Filter.FilterInt;
-            rangeBonusBox.TextChanged += Filter.FilterNInt;
-            radiusBaseBox.TextChanged += Filter.FilterInt;
-            radiusBonusBox.TextChanged += Filter.FilterNInt;
+            cooldownBaseBox.TextChanged += Filter.FilterDouble;
+            cooldownBonusBox.TextChanged += Filter.FilterNDouble;
+            rangeBaseBox.TextChanged += Filter.FilterDouble;
+            rangeBonusBox.TextChanged += Filter.FilterNDouble;
+            radiusBaseBox.TextChanged += Filter.FilterDouble;
+            radiusBonusBox.TextChanged += Filter.FilterNDouble;
+            periodBaseBox.TextChanged += Filter.FilterDouble;
+            periodBonusBox.TextChanged += Filter.FilterNDouble;
 
             this.parent = parent;
             this.skill = skill;
@@ -57,6 +59,7 @@ namespace SkillAPITool {
             // Details
             nameBox.Text = skill.name;
             descriptionBox.Text = skill.description;
+            messageBox.Text = skill.message;
             maxLevelBox.Text = skill.maxLevel.ToString();
             requiredLevelBox.Text = skill.skillReqLevel.ToString();
             indicatorBox.Text = skill.indicator;
@@ -129,7 +132,18 @@ namespace SkillAPITool {
         /// </summary>
         public void SetVisibility() {
 
-            int y = 332;
+            int y = 362;
+
+            // Skill requirement
+            if (requiredSkillBox.SelectedIndex == 0) {
+                requiredLevelBox.Visibility = Visibility.Collapsed;
+                requiredLevelLabel.Visibility = Visibility.Collapsed;
+            }
+            else {
+                requiredLevelBox.Visibility = Visibility.Visible;
+                requiredLevelLabel.Visibility = Visibility.Visible;
+                y += 30;
+            }
 
             // Range
             if (skill.RequiresRange) {
@@ -175,15 +189,26 @@ namespace SkillAPITool {
                 radiusLabel2.Visibility = Visibility.Collapsed;
             }
 
-            // Skill requirement
-            if (requiredSkillBox.SelectedIndex == 0) {
-                requiredLevelBox.Visibility = Visibility.Collapsed;
-                requiredLevelLabel.Visibility = Visibility.Collapsed;
+            // Passive period
+            if (skill.passive.Count > 0) {
+                periodLabel.Visibility = Visibility.Visible;
+                periodLabel1.Visibility = Visibility.Visible;
+                periodLabel2.Visibility = Visibility.Visible;
+                periodBaseBox.Visibility = Visibility.Visible;
+                periodBonusBox.Visibility = Visibility.Visible;
+                periodLabel.Margin = new Thickness(periodLabel.Margin.Left, y, 0, 0);
+                periodLabel1.Margin = new Thickness(0, y, periodLabel1.Margin.Right, 0);
+                periodLabel2.Margin = new Thickness(0, y, periodLabel2.Margin.Right, 0);
+                periodBaseBox.Margin = new Thickness(0, y, periodBaseBox.Margin.Right, 0);
+                periodBonusBox.Margin = new Thickness(0, y, periodBonusBox.Margin.Right, 0);
+                y += 30;
             }
             else {
-                requiredLevelBox.Visibility = Visibility.Visible;
-                requiredLevelLabel.Visibility = Visibility.Visible;
-                y += 30;
+                periodLabel.Visibility = Visibility.Collapsed;
+                periodLabel1.Visibility = Visibility.Collapsed;
+                periodLabel2.Visibility = Visibility.Collapsed;
+                periodBaseBox.Visibility = Visibility.Collapsed;
+                periodBonusBox.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -230,6 +255,7 @@ namespace SkillAPITool {
         /// <param name="e">event details</param>
         private void AddEmbedEffect(object sender, RoutedEventArgs e) {
             IEffect effect = GetEffect((embedEffectBox.SelectedItem as ComboBoxItem).Content.ToString());
+            effect.RemoveLinear();
             embedGrid.Children.Add((UserControl)effect);
             skill.embedded.Add(effect);
             Rearrange();
@@ -257,18 +283,21 @@ namespace SkillAPITool {
             skill.skillReqLevel = int.Parse(requiredLevelBox.Text);
             skill.type = (typeBox.SelectedItem as ComboBoxItem).Content.ToString();
             skill.description = descriptionBox.Text;
+            skill.message = messageBox.Text;
             skill.level.Initial = int.Parse(levelBaseBox.Text);
             skill.level.Scale = int.Parse(levelBonusBox.Text);
             skill.cost.Initial = int.Parse(costBaseBox.Text);
             skill.cost.Scale = int.Parse(costBonusBox.Text);
             skill.mana.Initial = int.Parse(manaBaseBox.Text);
             skill.mana.Scale = int.Parse(manaBonusBox.Text);
-            skill.cooldown.Initial = int.Parse(cooldownBaseBox.Text);
-            skill.cooldown.Scale = int.Parse(cooldownBonusBox.Text);
-            skill.range.Initial = int.Parse(rangeBaseBox.Text);
-            skill.range.Scale = int.Parse(rangeBonusBox.Text);
-            skill.radius.Initial = int.Parse(radiusBaseBox.Text);
-            skill.radius.Scale = int.Parse(radiusBonusBox.Text);
+            skill.cooldown.Initial = double.Parse(cooldownBaseBox.Text);
+            skill.cooldown.Scale = double.Parse(cooldownBonusBox.Text);
+            skill.range.Initial = double.Parse(rangeBaseBox.Text);
+            skill.range.Scale = double.Parse(rangeBonusBox.Text);
+            skill.radius.Initial = double.Parse(radiusBaseBox.Text);
+            skill.radius.Scale = double.Parse(radiusBonusBox.Text);
+            skill.period.Initial = double.Parse(periodBaseBox.Text);
+            skill.period.Scale = double.Parse(periodBonusBox.Text);
         }
 
         /// <summary>

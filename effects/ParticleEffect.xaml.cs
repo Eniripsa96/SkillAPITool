@@ -75,6 +75,43 @@ namespace SkillAPITool {
                 dataBox.Items.Add("Instant Damage");
                 dataBox.Items.Add("Invisibility");
             }
+            else if (typeBox.SelectedIndex == 4) {
+                dataBox.Items.Add("Angry Villager");
+                dataBox.Items.Add("Bubble");
+                dataBox.Items.Add("Cloud");
+                dataBox.Items.Add("Crit");
+                dataBox.Items.Add("Death Suspend");
+                dataBox.Items.Add("Drip Lava");
+                dataBox.Items.Add("Drip Water");
+                dataBox.Items.Add("Enchantment Table");
+                dataBox.Items.Add("Explode");
+                dataBox.Items.Add("Firework Spark");
+                dataBox.Items.Add("Flame");
+                dataBox.Items.Add("Footstep");
+                dataBox.Items.Add("Happy Villager");
+                dataBox.Items.Add("Heart");
+                dataBox.Items.Add("Huge Explosion");
+                dataBox.Items.Add("Icon Crack");
+                dataBox.Items.Add("Instant Spell");
+                dataBox.Items.Add("Large Explode");
+                dataBox.Items.Add("Large Smoke");
+                dataBox.Items.Add("Lava");
+                dataBox.Items.Add("Magic Crit");
+                dataBox.Items.Add("Mob Spell");
+                dataBox.Items.Add("Mob Spell Ambient");
+                dataBox.Items.Add("Note");
+                dataBox.Items.Add("Portal");
+                dataBox.Items.Add("Red Dust");
+                dataBox.Items.Add("Slime");
+                dataBox.Items.Add("Snowball Poof");
+                dataBox.Items.Add("Snow Shovel");
+                dataBox.Items.Add("Spell");
+                dataBox.Items.Add("Splash");
+                dataBox.Items.Add("Suspend");
+                dataBox.Items.Add("Tile Crack");
+                dataBox.Items.Add("Town Aura");
+                dataBox.Items.Add("Witch Magic");
+            }
             else {
                 dataBox.Items.Add("None");
             }
@@ -94,6 +131,9 @@ namespace SkillAPITool {
                 if (value > 10) value++;
                 if (value > 12) value++;
                 return value;
+            }
+            else if (typeBox.SelectedIndex == 4) {
+                return dataBox.SelectedIndex;
             }
             else return 0;
         }
@@ -182,11 +222,11 @@ namespace SkillAPITool {
             else if (value.Key.Equals("Particle Radius Bonus") && value.Number >= 0) {
                 RadiusBonusBox.Text = value.Number.ToString();
             }
-            else if (value.Key.Equals("Particle") && value.Number >= 0 && value.Number < typeBox.Items.Count) {
-                typeBox.SelectedIndex = value.Number;
-            }
             else if (value.Key.Equals("Particle Area") && value.Number >= 0 && value.Number < 3) {
                 areaBox.SelectedIndex = value.Number;
+            }
+            else if (value.Key.Equals("Particle") && value.Number >= 0 && value.Number < typeBox.Items.Count) {
+                typeBox.SelectedIndex = value.Number;
             }
             else if (value.Key.Equals("Particle Data")) {
                 int num = value.Number;
@@ -219,6 +259,13 @@ namespace SkillAPITool {
         /// <param name="e">event details</param>
         private void TypeChanged(object sender, SelectionChangedEventArgs e) {
             UpdateDataBox();
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

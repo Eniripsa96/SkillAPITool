@@ -24,10 +24,10 @@ namespace SkillAPITool {
             InitializeComponent();
             healBaseBox.TextChanged += Filter.FilterInt;
             healBonusBox.TextChanged += Filter.FilterInt;
-            durationBaseBox.TextChanged += Filter.FilterInt;
-            durationBonusBox.TextChanged += Filter.FilterInt;
-            freqBaseBox.TextChanged += Filter.FilterInt;
-            freqBonusBox.TextChanged += Filter.FilterNInt;
+            durationBaseBox.TextChanged += Filter.FilterDouble;
+            durationBonusBox.TextChanged += Filter.FilterDouble;
+            freqBaseBox.TextChanged += Filter.FilterDouble;
+            freqBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -101,8 +101,8 @@ namespace SkillAPITool {
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
             list.Add(new Attribute("Health Per Tick", int.Parse(healBaseBox.Text), int.Parse(healBonusBox.Text)));
-            list.Add(new Attribute("Heal Duration", int.Parse(durationBaseBox.Text), int.Parse(durationBaseBox.Text)));
-            list.Add(new Attribute("Heal Frequency", int.Parse(freqBaseBox.Text), int.Parse(freqBonusBox.Text)));
+            list.Add(new Attribute("Heal Duration", double.Parse(durationBaseBox.Text), double.Parse(durationBonusBox.Text)));
+            list.Add(new Attribute("Heal Frequency", double.Parse(freqBaseBox.Text), double.Parse(freqBonusBox.Text)));
         }
 
         /// <summary>
@@ -145,6 +145,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

@@ -34,10 +34,10 @@ namespace SkillAPITool {
             // Filters
             maxLevelBox.TextChanged += Filter.FilterInt;
             professLevelBox.TextChanged += Filter.FilterInt;
-            healthBaseBox.TextChanged += Filter.FilterInt;
-            healthBonusBox.TextChanged += Filter.FilterInt;
-            manaBaseBox.TextChanged += Filter.FilterInt;
-            manaBonusBox.TextChanged += Filter.FilterInt;
+            healthBaseBox.TextChanged += Filter.FilterDouble;
+            healthBonusBox.TextChanged += Filter.FilterDouble;
+            manaBaseBox.TextChanged += Filter.FilterDouble;
+            manaBonusBox.TextChanged += Filter.FilterDouble;
 
             Apply();
         }
@@ -83,6 +83,9 @@ namespace SkillAPITool {
                 skillGrid.Children.Add(option);
                 this.skills.Add(option);
                 y += 25;
+                if (tree.skills.Contains(skill.name)) {
+                    option.IsChecked = true;
+                }
             }
         }
 

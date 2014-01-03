@@ -22,6 +22,7 @@ namespace SkillAPITool {
         /// </summary>
         public bool IsChecked {
             get { return (bool)optionBox.IsChecked; }
+            set { optionBox.IsChecked = value; }
         }
 
         /// <summary>

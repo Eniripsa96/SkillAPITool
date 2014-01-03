@@ -22,8 +22,8 @@ namespace SkillAPITool {
         /// </summary>
         public PushEffect() {
             InitializeComponent();
-            pushBaseBox.TextChanged += Filter.FilterInt;
-            pushBonusBox.TextChanged += Filter.FilterInt;
+            pushBaseBox.TextChanged += Filter.FilterDouble;
+            pushBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Push Speed", int.Parse(pushBaseBox.Text), int.Parse(pushBonusBox.Text)));
+            list.Add(new Attribute("Push Speed", double.Parse(pushBaseBox.Text), double.Parse(pushBonusBox.Text)));
         }
 
         /// <summary>
@@ -131,6 +131,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

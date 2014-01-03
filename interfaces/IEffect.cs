@@ -52,5 +52,10 @@ namespace SkillAPITool {
         /// </summary>
         /// <param name="value">value</param>
         void ApplyValue(Value value);
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        void RemoveLinear();
     }
 }

@@ -22,8 +22,8 @@ namespace SkillAPITool {
         /// </summary>
         public ProjectileEffect() {
             InitializeComponent();
-            speedBaseBox.TextChanged += Filter.FilterInt;
-            speedBonusBox.TextChanged += Filter.FilterInt;
+            speedBaseBox.TextChanged += Filter.FilterDouble;
+            speedBonusBox.TextChanged += Filter.FilterDouble;
             angleBaseBox.TextChanged += Filter.FilterInt;
             angleBonusBox.TextChanged += Filter.FilterInt;
             amountBaseBox.TextChanged += Filter.FilterInt;
@@ -84,7 +84,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Speed", int.Parse(speedBaseBox.Text), int.Parse(speedBonusBox.Text)));
+            list.Add(new Attribute("Speed", double.Parse(speedBaseBox.Text), double.Parse(speedBonusBox.Text)));
             list.Add(new Attribute("Angle", int.Parse(angleBaseBox.Text), int.Parse(angleBonusBox.Text)));
             list.Add(new Attribute("Quantity", int.Parse(amountBaseBox.Text), int.Parse(amountBonusBox.Text)));
         }
@@ -108,8 +108,8 @@ namespace SkillAPITool {
                 speedBonusBox.Text = attribute.Scale.ToString();
             }
             else if (attribute.Key.EndsWith("Angle")) {
-                speedBaseBox.Text = attribute.Initial.ToString();
-                speedBonusBox.Text = attribute.Scale.ToString();
+                angleBaseBox.Text = attribute.Initial.ToString();
+                angleBonusBox.Text = attribute.Scale.ToString();
             }
             else if (attribute.Key.EndsWith("Quantity")) {
                 amountBaseBox.Text = attribute.Initial.ToString();
@@ -133,5 +133,10 @@ namespace SkillAPITool {
                 }
             }
         }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() { }
     }
 }

@@ -145,5 +145,12 @@ namespace SkillAPITool {
                 GetParent().SetVisibility();
             }
         }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
+        }
     }
 }

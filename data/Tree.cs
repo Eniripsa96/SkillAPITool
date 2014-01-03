@@ -15,10 +15,10 @@ namespace SkillAPITool {
         public bool inherit;
         public int maxLevel = 40;
         public int professLevel = 40;
-        public int healthBase = 20;
-        public int healthScale = 0;
-        public int manaBase = 20;
-        public int manaBonus = 0;
+        public double healthBase = 20;
+        public double healthScale = 0;
+        public double manaBase = 20;
+        public double manaBonus = 0;
 
         /// <summary>
         /// Whether or not the tree has a parent to inherit from

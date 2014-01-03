@@ -22,11 +22,13 @@ namespace SkillAPITool {
         public Attribute cooldown = new Attribute("Cooldown", 0, 0);
         public Attribute range = new Attribute("Range", 8, 0);
         public Attribute radius = new Attribute("Radius", 5, 0);
+        public Attribute period = new Attribute("Period", 3, 0);
         public string name;
         public string type = "Target";
         public string indicator = "Apple";
         public string itemReq = "";
         public string description = "";
+        public string message = "";
         public string skillReq = "";
         public int maxLevel = 5;
         public int skillReqLevel = 1;
@@ -93,14 +95,21 @@ namespace SkillAPITool {
         /// Attribute array of the skill
         /// </summary>
         public Attribute[] Attributes {
-            get { return new Attribute[] { level, cost, mana, cooldown,  range, radius }; }
+            get { return new Attribute[] { level, cost, mana, cooldown,  range, radius, period }; }
         }
 
         /// <summary>
         /// Whether or not this skill has a description
         /// </summary>
         public bool HasDescription {
-            get { return description.Length > 0; }
+            get { return description.Replace(" ", "").Length > 0; }
+        }
+
+        /// <summary>
+        /// Whether or not the skill has a message
+        /// </summary>
+        public bool hasMessage {
+            get { return message.Replace(" ", "").Length > 0; }
         }
 
         /// <summary>

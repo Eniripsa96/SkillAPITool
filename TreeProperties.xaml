@@ -7,25 +7,53 @@
     d:DesignHeight="363" d:DesignWidth="400" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
     
     <Grid x:Name="LayoutRoot" Background="#FF2D2D2D">
-        <sdk:Label Content="Class Name" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,12,196,0" Name="label6" Padding="3,0" VerticalAlignment="Top" />
+        <sdk:Label Content="Class Name" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,12,196,0" Name="label6" Padding="3,0" VerticalAlignment="Top" >
+            <ToolTipService.ToolTip>
+                <ToolTip Content="The name of your class to use in commands" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+            </ToolTipService.ToolTip>
+        </sdk:Label>
         <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,12,12,0" Name="nameBox" Padding="2,0" Text="" VerticalAlignment="Top" Width="178" TextChanged="NameChanged" FontFamily="Sertig.otf#Sertig" />
-        <sdk:Label Content="Prefix" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,42,196,0" Name="label1" Padding="3,0" VerticalAlignment="Top" />
+        <sdk:Label Content="Prefix" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,42,196,0" Name="label1" Padding="3,0" VerticalAlignment="Top" >
+            <ToolTipService.ToolTip>
+                <ToolTip Content="Prefix to use in the scoreboard, chat, and the skill tree" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+            </ToolTipService.ToolTip>
+        </sdk:Label>
         <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,42,12,0" Name="prefixBox" Padding="2,0" Text="" VerticalAlignment="Top" Width="178" FontFamily="Sertig.otf#Sertig" />
-        <sdk:Label Content="Max Level" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,72,196,0" Name="label2" Padding="3,0" VerticalAlignment="Top" />
+        <sdk:Label Content="Max Level" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,72,196,0" Name="label2" Padding="3,0" VerticalAlignment="Top" >
+            <ToolTipService.ToolTip>
+                <ToolTip Content="The maximum level the class can reach (should be higher than the profess level)" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+            </ToolTipService.ToolTip>
+        </sdk:Label>
         <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,72,12,0" Name="maxLevelBox" Padding="2,0" Text="40" VerticalAlignment="Top" Width="178" FontFamily="Sertig.otf#Sertig" />
-        <sdk:Label Content="Profession Level" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,102,196,0" Name="label3" Padding="3,0" VerticalAlignment="Top" />
+        <sdk:Label Content="Profession Level" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,102,196,0" Name="label3" Padding="3,0" VerticalAlignment="Top" >
+            <ToolTipService.ToolTip>
+                <ToolTip Content="The level in which the class can profess into a new one (0 or less means it cannot profess)" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+            </ToolTipService.ToolTip>
+        </sdk:Label>
         <TextBox Background="White" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,102,12,0" Name="professLevelBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="178" FontFamily="Sertig.otf#Sertig" />
-        <sdk:Label Content="Health" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,132,196,0" Name="label4" Padding="3,0" VerticalAlignment="Top" />
-        <sdk:Label Content="Mana" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,162,196,0" Name="label5" Padding="3,0" VerticalAlignment="Top" />
+        <sdk:Label Content="Health" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,132,196,0" Name="label4" Padding="3,0" VerticalAlignment="Top" >
+            <ToolTipService.ToolTip>
+                <ToolTip Content="How much health the class has" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+            </ToolTipService.ToolTip>
+        </sdk:Label>
         <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,132,114,0" MaxLength="0" Name="healthBaseBox" Padding="2,0" Text="20" VerticalAlignment="Top" Width="76" FontFamily="Sertig.otf#Sertig" />
         <sdk:Label Content="+ (" FontFamily="Mojave.ttf#Mojave" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,132,77,0" Name="label10" Padding="0" VerticalAlignment="Top" Width="31" />
         <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,132,24,0" MaxLength="0" Name="healthBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" FontFamily="Sertig.otf#Sertig" />
         <sdk:Label Content=")" FontFamily="Mojave.ttf#Mojave" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,132,12,0" Name="label11" Padding="0" VerticalAlignment="Top" Width="16" />
+        <sdk:Label Content="Mana" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,162,196,0" Name="label5" Padding="3,0" VerticalAlignment="Top" >
+            <ToolTipService.ToolTip>
+                <ToolTip Content="How much mana the class has" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+            </ToolTipService.ToolTip>
+        </sdk:Label>
         <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,162,114,0" MaxLength="0" Name="manaBaseBox" Padding="2,0" Text="20" VerticalAlignment="Top" Width="76" FontFamily="Sertig.otf#Sertig" />
         <sdk:Label Content="+ (" FontFamily="Mojave.ttf#Mojave" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,162,77,0" Name="label7" Padding="0" VerticalAlignment="Top" Width="31" />
         <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,162,24,0" MaxLength="0" Name="manaBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" FontFamily="Sertig.otf#Sertig" />
         <sdk:Label Content=")" FontFamily="Mojave.ttf#Mojave" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,162,12,0" Name="label8" Padding="0" VerticalAlignment="Top" Width="16" />
-        <sdk:Label Content="Class Required" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,192,196,0" Name="label9" Padding="3,0" VerticalAlignment="Top" />
+        <sdk:Label Content="Class Required" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,192,196,0" Name="label9" Padding="3,0" VerticalAlignment="Top" >
+            <ToolTipService.ToolTip>
+                <ToolTip Content="The class that this one professes from" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+            </ToolTipService.ToolTip>
+        </sdk:Label>
         <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,192,12,0" Name="requiredClassBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="178" FontFamily="Sertig.otf#Sertig">
             <ComboBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -35,7 +63,11 @@
             </ComboBox.Background>
             <ComboBoxItem Content="None" />
         </ComboBox>
-        <sdk:Label Content="Inherit Parent Skills" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,222,196,0" Name="label12" Padding="3,0" VerticalAlignment="Top" />
+        <sdk:Label Content="Inherit Parent Skills" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="12,222,196,0" Name="label12" Padding="3,0" VerticalAlignment="Top" >
+            <ToolTipService.ToolTip>
+                <ToolTip Content="Wether or not this class inherits the skills of the previous one" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+            </ToolTipService.ToolTip>
+        </sdk:Label>
         <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,222,12,0" Name="inheritBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="178" FontFamily="Sertig.otf#Sertig">
             <ComboBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -48,7 +80,11 @@
         </ComboBox>
         <Grid Background="White" Margin="12,251,12,12" Name="grid1">
             <Grid Background="Black" Margin="1" Name="skillGrid">
-                <sdk:Label Content="Class Skills" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="Lime" Height="23" Margin="6,6,166,0" Name="label13" Padding="3,0" VerticalAlignment="Top" Background="{x:Null}" />
+                <sdk:Label Content="Class Skills" FontFamily="Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="#FFFFAB3C" Height="23" Margin="6,6,11,0" Name="label13" Padding="3,0" VerticalAlignment="Top" Background="{x:Null}" >
+                    <ToolTipService.ToolTip>
+                        <ToolTip Content="Which skills to give the class" FontFamily="Sertig.otf#Sertig" FontSize="18" />
+                    </ToolTipService.ToolTip>
+                </sdk:Label>
             </Grid>
         </Grid>
     </Grid>

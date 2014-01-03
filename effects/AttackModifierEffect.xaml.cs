@@ -22,10 +22,12 @@ namespace SkillAPITool {
         /// </summary>
         public AttackModifierEffect() {
             InitializeComponent();
-            durationBaseBox.TextChanged += Filter.FilterInt;
-            durationBonusBox.TextChanged += Filter.FilterInt;
+            durationBaseBox.TextChanged += Filter.FilterDouble;
+            durationBonusBox.TextChanged += Filter.FilterDouble;
             attackBaseBox.TextChanged += Filter.FilterInt;
             attackBonusBox.TextChanged += Filter.FilterInt;
+            chanceBaseBox.TextChanged += Filter.FilterDouble;
+            chanceBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -98,8 +100,11 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Modifier Duration", int.Parse(durationBaseBox.Text), int.Parse(durationBonusBox.Text)));
+            list.Add(new Attribute("Modifier Duration", double.Parse(durationBaseBox.Text), double.Parse(durationBonusBox.Text)));
             list.Add(new Attribute("Attacks", int.Parse(attackBaseBox.Text), int.Parse(attackBonusBox.Text)));
+            if (double.Parse(chanceBaseBox.Text) < 100) {
+                list.Add(new Attribute("Modifier Chance", double.Parse(chanceBaseBox.Text), double.Parse(chanceBonusBox.Text)));
+            }
         }
 
         /// <summary>
@@ -123,6 +128,10 @@ namespace SkillAPITool {
                 attackBaseBox.Text = attribute.Initial.ToString();
                 attackBonusBox.Text = attribute.Scale.ToString();
             }
+            else if (attribute.Key.EndsWith("Modifier Chance")) {
+                chanceBaseBox.Text = attribute.Initial.ToString();
+                chanceBonusBox.Text = attribute.Scale.ToString();
+            }
         }
 
         /// <summary>
@@ -144,6 +153,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

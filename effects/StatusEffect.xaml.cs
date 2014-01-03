@@ -22,8 +22,8 @@ namespace SkillAPITool {
         /// </summary>
         public StatusEffect() {
             InitializeComponent();
-            lengthBaseBox.TextChanged += Filter.FilterInt;
-            lengthBonusBox.TextChanged += Filter.FilterInt;
+            lengthBaseBox.TextChanged += Filter.FilterDouble;
+            lengthBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Length", int.Parse(lengthBaseBox.Text), int.Parse(lengthBonusBox.Text)));
+            list.Add(new Attribute("Length", double.Parse(lengthBaseBox.Text), double.Parse(lengthBonusBox.Text)));
         }
 
         /// <summary>
@@ -139,6 +139,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

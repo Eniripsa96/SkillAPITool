@@ -22,8 +22,8 @@ namespace SkillAPITool {
         /// </summary>
         public ChanceEffect() {
             InitializeComponent();
-            chanceBaseBox.TextChanged += Filter.FilterInt;
-            chanceBonusBox.TextChanged += Filter.FilterInt;
+            chanceBaseBox.TextChanged += Filter.FilterDouble;
+            chanceBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Chance", int.Parse(chanceBaseBox.Text), int.Parse(chanceBonusBox.Text)));
+            list.Add(new Attribute("Chance", double.Parse(chanceBaseBox.Text), double.Parse(chanceBonusBox.Text)));
         }
 
         /// <summary>
@@ -131,6 +131,13 @@ namespace SkillAPITool {
             if (Parent != null) {
                 GetParent().SetVisibility();
             }
+        }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
         }
     }
 }

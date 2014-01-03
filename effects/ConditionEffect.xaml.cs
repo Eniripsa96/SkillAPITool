@@ -164,5 +164,12 @@ namespace SkillAPITool {
                 condition3.IsEnabled = operator2.SelectedIndex > 0;
             }
         }
+
+        /// <summary>
+        /// Removes the linear target option
+        /// </summary>
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
+        }
     }
 }

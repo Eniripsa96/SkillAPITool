@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="SkillAPITool.ParticleProjectileEffect"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="519" VerticalAlignment="Top" Height="330" Background="White">
+
+    <Grid Background="White">
+        <Grid Background="Black" Margin="6">
+            <sdk:Label Content="Particle Projectile" FontFamily="../Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="#FFFFAB3C" Height="24" Margin="6,6,160,0" Name="label6" Padding="3,0" VerticalAlignment="Top" />
+            <sdk:Label Content="Speed" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Margin="6,127,162,0" Name="label7" Padding="3,0" Height="23" VerticalAlignment="Top" />
+            <TextBox FontSize="18" FontWeight="Normal" HorizontalAlignment="Right" Margin="0,127,104,0" Name="speedBaseBox" Padding="2,0" Text="3" Width="107" Height="23" VerticalAlignment="Top" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,127,74,0" Name="label8" Padding="0" VerticalAlignment="Top" Width="24" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" Margin="0,127,18,0" Name="speedBonusBox" Padding="2,0" Text="1" VerticalAlignment="Top" FontFamily="../Sertig.otf#Sertig" HorizontalAlignment="Right" Width="50" />
+            <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,127,6,0" Name="label9" Padding="0" VerticalAlignment="Top" Width="16" />
+            <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,36,6,0" Name="spreadBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="205" FontFamily="../Sertig.otf#Sertig">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="Horizontal Cone" />
+                <ComboBoxItem Content="Cone" />
+            </ComboBox>
+            <sdk:Label Content="Spread Type" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,36,160,0" Name="label3" Padding="3,0" VerticalAlignment="Top" />
+            <sdk:Label Content="Angle" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,157,162,0" Name="label4" Padding="3,0" VerticalAlignment="Top" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,157,104,0" Name="angleBaseBox" Padding="2,0" Text="30" VerticalAlignment="Top" Width="107" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,157,74,0" Name="label5" Padding="0" VerticalAlignment="Top" Width="24" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,157,18,0" Name="angleBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,157,6,0" Name="label10" Padding="0" VerticalAlignment="Top" Width="16" />
+            <sdk:Label Content="Amount" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,188,162,0" Name="label11" Padding="3,0" VerticalAlignment="Top" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,188,104,0" Name="amountBaseBox" Padding="2,0" Text="1" VerticalAlignment="Top" Width="107" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,188,74,0" Name="label12" Padding="0" VerticalAlignment="Top" Width="24" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,188,18,0" Name="amountBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,188,6,0" Name="label13" Padding="0" VerticalAlignment="Top" Width="16" />
+            <sdk:Label Content="Embedded effects on hit" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,218,108,0" Name="label1" Padding="3,0" VerticalAlignment="Top" />
+            <Button Background="White" BorderBrush="White" BorderThickness="1" Content="Remove" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="Red" Height="29" Margin="0,0,6,6" Name="removeButton" VerticalAlignment="Bottom" Click="Removed" HorizontalAlignment="Right" Width="205" />
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,66,6,0" Name="typeBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="205">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="Smoke" />
+                <ComboBoxItem Content="Ender Signal" />
+                <ComboBoxItem Content="Flames" />
+                <ComboBoxItem Content="Potion Break" />
+                <ComboBoxItem Content="Other" />
+            </ComboBox>
+            <sdk:Label Content="Particle Type" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,66,160,0" Name="label2" Padding="3,0" VerticalAlignment="Top" />
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,96,6,0" Name="dataBox" Padding="6,0" SelectedIndex="-1" VerticalAlignment="Top" Width="205">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
+            <sdk:Label Content="Data Value" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,96,160,0" Name="label14" Padding="3,0" VerticalAlignment="Top" />
+        </Grid>
+    </Grid>
+</UserControl>

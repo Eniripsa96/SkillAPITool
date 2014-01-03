@@ -56,6 +56,7 @@ namespace SkillAPITool {
             effectDictionary.Add("damagepercent", "DamagePercent");
             effectDictionary.Add("damagepercentreduction", "DamagePercentReduction");
             effectDictionary.Add("damagereduction", "DamageReduction");
+            effectDictionary.Add("defensemodifier", "DefenseModifier");
             effectDictionary.Add("delay", "Delay");
             effectDictionary.Add("dot", "DOT");
             effectDictionary.Add("fire", "Fire");
@@ -65,6 +66,7 @@ namespace SkillAPITool {
             effectDictionary.Add("mana", "Mana");
             effectDictionary.Add("manadamage", "ManaDamage");
             effectDictionary.Add("particle", "Particle");
+            effectDictionary.Add("particleprojectile", "ParticleProjectile");
             effectDictionary.Add("potion", "Potion");
             effectDictionary.Add("projectile", "Projectile");
             effectDictionary.Add("pull", "Pull");
@@ -189,6 +191,11 @@ namespace SkillAPITool {
                 }
                 else data += "  description: []\n";
 
+                // Message
+                if (skill.hasMessage) {
+                    data += "  message: '" + skill.message.Replace("'", "") +"'\n";
+                }
+
                 // Actives
                 if (skill.active.Count > 0) {
                     data += "  active:\n";
@@ -197,6 +204,16 @@ namespace SkillAPITool {
                     foreach (IEffect effect in skill.active) {
                         string key = effect.GetKey() + ";" + effect.GetTarget();
                         if (used.Contains(key)) continue;
+                        else if (effect is AttackModifierEffect) {
+                            string key2 = "DefenseModifier;" + effect.GetTarget();
+                            if (used.Contains(key2)) continue;
+                            else used.Add(key);
+                        }
+                        else if (effect is DefenseModifierEffect) {
+                            string key2 = "AttackModifier;" + effect.GetTarget();
+                            if (used.Contains(key2)) continue;
+                            else used.Add(key);
+                        }
                         else used.Add(key);
                         data += "    m" + index++ + ":\n";
                         data += "      effect: " + effect.GetKey() + "\n";
@@ -245,6 +262,7 @@ namespace SkillAPITool {
                 foreach (Attribute attribute in skill.Attributes) {
                     if (attribute.Key.Equals("Range") && !skill.RequiresRange) continue;
                     if (attribute.Key.Equals("Radius") && !skill.RequiresRadius) continue;
+                    if (attribute.Key.Equals("Period") && skill.passive.Count == 0) continue;
                     data += "    " + attribute.Key + ":\n";
                     data += "      base: " + attribute.Initial + "\n";
                     data += "      scale: " + attribute.Scale + "\n";
@@ -319,20 +337,20 @@ namespace SkillAPITool {
                 data += "  prefix: '" + tree.prefix + "'\n";
                 data += "  max-level: " + tree.maxLevel + "\n";
                 data += "  health-base: " + tree.healthBase + "\n";
-                data += "  health-bonus: " + tree.healthScale + "\n";
+                data += "  health-scale: " + tree.healthScale + "\n";
                 data += "  mana-base: " + tree.manaBase + "\n";
-                data += "  mana-bonus: " + tree.manaBonus + "\n";
+                data += "  mana-scale: " + tree.manaBonus + "\n";
 
                 // Inheritance
                 if (tree.CanInherit) {
-                    data += "  profess-level: " + Math.Max(tree.professLevel, 1) + "\n";
+                    data += "  profess-level: " + tree.professLevel + "\n";
                     data += "  parent: " + tree.parent + "\n";
                     if (tree.inherit) {
                         data += "  inherit:\n";
                         data += "  - " + tree.parent + "\n";
                     }
                 }
-                else data += "  profess-level: 0\n";
+                else data += "  profess-level: " + tree.professLevel + "\n";
 
                 // Skills
                 if (tree.skills.Count == 0) {
@@ -396,8 +414,8 @@ namespace SkillAPITool {
 
                                 // Attributes
                                 if (a) {
-                                    if (data.StartsWith("  base: ")) currentAttribute.Initial = int.Parse(data.Substring(8));
-                                    else if (data.StartsWith("  scale: ")) currentAttribute.Scale = int.Parse(data.Substring(9));
+                                    if (data.StartsWith("  base: ")) currentAttribute.Initial = double.Parse(data.Substring(8));
+                                    else if (data.StartsWith("  scale: ")) currentAttribute.Scale = double.Parse(data.Substring(9));
                                     else if (!data.StartsWith(" ")) {
                                         if (!currentAttribute.Key.Equals("")) {
                                             attributes.Add(new Attribute(currentAttribute.Key, currentAttribute.Initial, currentAttribute.Scale));
@@ -524,15 +542,19 @@ namespace SkillAPITool {
                                 int index = data.IndexOf('\'') + 1;
                                 tree.prefix = data.Substring(index, data.IndexOf('\'', index) - index);
                             }
+                            else if (data.StartsWith("  prefix: ")) {
+                                int index = data.IndexOf(":") + 2;
+                                tree.prefix = data.Substring(index);
+                            }
 
                             // Class data
                             else if (data.StartsWith("  parent: ")) tree.parent = data.Substring(data.IndexOf(": ") + 2);
                             else if (data.StartsWith("  profess-level: ")) tree.professLevel = int.Parse(data.Substring(data.IndexOf(": ") + 2));
                             else if (data.StartsWith("  max-level: ")) tree.maxLevel = int.Parse(data.Substring(data.IndexOf(": ") + 2));
-                            else if (data.StartsWith("  health-base: ")) tree.healthBase = int.Parse(data.Substring(data.IndexOf(": ") + 2));
-                            else if (data.StartsWith("  health-scale: ")) tree.healthScale = int.Parse(data.Substring(data.IndexOf(": ") + 2));
-                            else if (data.StartsWith("  mana-base: ")) tree.manaBase = int.Parse(data.Substring(data.IndexOf(": ") + 2));
-                            else if (data.StartsWith("  mana-scale: ")) tree.manaBonus = int.Parse(data.Substring(data.IndexOf(": ") + 2));
+                            else if (data.StartsWith("  health-base: ")) tree.healthBase = double.Parse(data.Substring(data.IndexOf(": ") + 2));
+                            else if (data.StartsWith("  health-scale: ")) tree.healthScale = double.Parse(data.Substring(data.IndexOf(": ") + 2));
+                            else if (data.StartsWith("  mana-base: ")) tree.manaBase = double.Parse(data.Substring(data.IndexOf(": ") + 2));
+                            else if (data.StartsWith("  mana-scale: ")) tree.manaBonus = double.Parse(data.Substring(data.IndexOf(": ") + 2));
                             else if (data.Equals("  inherit:")) tree.inherit = true;
                             else if (data.Equals("  inherit: []")) tree.inherit = false;
                             else if (data.Equals("  skills:")) skills = true;
