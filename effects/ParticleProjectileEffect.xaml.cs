@@ -28,6 +28,7 @@ namespace SkillAPITool {
             angleBonusBox.TextChanged += Filter.FilterInt;
             amountBaseBox.TextChanged += Filter.FilterInt;
             amountBonusBox.TextChanged += Filter.FilterInt;
+            UpdateDataBox();
         }
 
         /// <summary>

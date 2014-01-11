@@ -75,6 +75,13 @@ namespace SkillAPITool {
                 }
             }
 
+            // Click combo
+            if (tree.interval == 2) {
+                if (tree.offset == 0) clickBox.SelectedIndex = 1;
+                if (tree.offset == 1) clickBox.SelectedIndex = 2;
+            }
+            else if (tree.offset == 0) clickBox.SelectedIndex = 3;
+
             // Skill options
             int y = 30;
             foreach (Skill skill in GetParent().skills) {
@@ -104,6 +111,24 @@ namespace SkillAPITool {
             tree.healthScale = int.Parse(healthBonusBox.Text);
             tree.manaBase = int.Parse(manaBaseBox.Text);
             tree.manaBonus = int.Parse(manaBonusBox.Text);
+
+            // Click combos
+            if (clickBox.SelectedIndex == 0) {
+                tree.offset = 1;
+                tree.interval = 1;
+            }
+            else if (clickBox.SelectedIndex == 1) {
+                tree.offset = 0;
+                tree.interval = 2;
+            }
+            else if (clickBox.SelectedIndex == 2) {
+                tree.offset = 1;
+                tree.interval = 2;
+            }
+            else {
+                tree.offset = 0;
+                tree.interval = 1;
+            }
 
             tree.skills.Clear();
             foreach (SkillOption option in skills) {

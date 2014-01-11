@@ -66,7 +66,7 @@ namespace SkillAPITool {
             levelBaseBox.Text = skill.level.Initial.ToString();
             levelBonusBox.Text = skill.level.Scale.ToString();
             costBaseBox.Text = skill.cost.Initial.ToString();
-            costBonusBox.Text = skill.cooldown.Scale.ToString();
+            costBonusBox.Text = skill.cost.Scale.ToString();
             manaBaseBox.Text = skill.mana.Initial.ToString();
             manaBonusBox.Text = skill.mana.Scale.ToString();
             cooldownBaseBox.Text = skill.cooldown.Initial.ToString();

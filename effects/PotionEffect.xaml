@@ -16,7 +16,7 @@
                         <GradientStop Color="Black" Offset="1" />
                     </LinearGradientBrush>
                 </ComboBox.Background>
-                <ComboBoxItem Content="Area" />
+                <ComboBoxItem Content="Cone" />
                 <ComboBoxItem Content="Linear" />
                 <ComboBoxItem Content="Self" />
                 <ComboBoxItem Content="Target" />

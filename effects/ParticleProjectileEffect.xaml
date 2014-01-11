@@ -38,7 +38,7 @@
             <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,188,6,0" Name="label13" Padding="0" VerticalAlignment="Top" Width="16" />
             <sdk:Label Content="Embedded effects on hit" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,218,108,0" Name="label1" Padding="3,0" VerticalAlignment="Top" />
             <Button Background="White" BorderBrush="White" BorderThickness="1" Content="Remove" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="Red" Height="29" Margin="0,0,6,6" Name="removeButton" VerticalAlignment="Bottom" Click="Removed" HorizontalAlignment="Right" Width="205" />
-            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,66,6,0" Name="typeBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="205">
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,66,6,0" Name="typeBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="205" SelectionChanged="TypeChanged">
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="0" />

@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Threading;
+using System.Text;
 
 namespace SkillAPITool {
 
@@ -19,7 +20,7 @@ namespace SkillAPITool {
     /// </summary>
     public partial class MainPage : UserControl {
 
-        private static readonly string 
+        private static readonly string
             DEFAULT_SKILL_NAME = "Skill",
             DEFAULT_CLASS_NAME = "Class",
             SKILL_FILE = "Skills.yml",
@@ -30,6 +31,7 @@ namespace SkillAPITool {
 
         private ResourceDictionary effectDictionary = new ResourceDictionary();
         private DispatcherTimer timer;
+        private StringBuilder sb = new StringBuilder();
 
         /// <summary>
         /// Constructor
@@ -42,7 +44,7 @@ namespace SkillAPITool {
 
             // Set up timer
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            timer.Interval = new TimeSpan(0, 0, 0, 1);
             timer.Tick += TimerComplete;
             timer.Start();
 
@@ -160,164 +162,17 @@ namespace SkillAPITool {
         private void UpdateSkills() {
             fileLabel.Content = SKILL_FILE;
 
-            string data = "";
+            sb.Clear();
             int si = skillList.SelectedIndex;
             skillList.Items.Clear();
+            if (si != -1) skills[si].Update();
             foreach (Skill skill in skills) {
                 skillList.Items.Add(skill.name);
-
-                // Basic
-                data += skill.name + ":\n";
-                data += "  type: " + skill.type + "\n";
-                data += "  indicator: " + skill.indicator + "\n";
-                data += "  max-level: " + skill.maxLevel + "\n";
-                
-                // Skill requirement
-                if (skill.RequiresSkill) {
-                    data += "  skill-req: " + skill.skillReq + "\n";
-                    data += "  skill-req-level: " + skill.skillReqLevel + "\n";
-                }
-
-                // Item requirement
-                if (skill.RequiresItem) {
-                    data += "  item-req: " + skill.itemReq;
-                }
-
-                // Description
-                if (skill.HasDescription) {
-                    data += "  description:\n";
-                    List<String> lines = TextUtil.SplitDescription(skill.description);
-                    foreach (string line in lines) data += "  - '" + line + "'\n";
-                }
-                else data += "  description: []\n";
-
-                // Message
-                if (skill.hasMessage) {
-                    data += "  message: '" + skill.message.Replace("'", "") +"'\n";
-                }
-
-                // Actives
-                if (skill.active.Count > 0) {
-                    data += "  active:\n";
-                    int index = 0;
-                    List<String> used = new List<String>();
-                    foreach (IEffect effect in skill.active) {
-                        string key = effect.GetKey() + ";" + effect.GetTarget();
-                        if (used.Contains(key)) continue;
-                        else if (effect is AttackModifierEffect) {
-                            string key2 = "DefenseModifier;" + effect.GetTarget();
-                            if (used.Contains(key2)) continue;
-                            else used.Add(key);
-                        }
-                        else if (effect is DefenseModifierEffect) {
-                            string key2 = "AttackModifier;" + effect.GetTarget();
-                            if (used.Contains(key2)) continue;
-                            else used.Add(key);
-                        }
-                        else used.Add(key);
-                        data += "    m" + index++ + ":\n";
-                        data += "      effect: " + effect.GetKey() + "\n";
-                        data += "      target: " + effect.GetTarget() + "\n";
-                        data += "      group: " + effect.GetGroup() + "\n";
-                    }
-                }
-                else data += "  active: {}\n";
-
-                // Passives
-                if (skill.passive.Count > 0) {
-                    data += "  passive:\n";
-                    int index = 0;
-                    List<String> used = new List<String>();
-                    foreach (IEffect effect in skill.passive) {
-                        string key = effect.GetKey() + ";" + effect.GetTarget();
-                        if (used.Contains(key)) continue;
-                        else used.Add(key);
-                        data += "    m" + index++ + ":\n";
-                        data += "      effect: " + effect.GetKey() + "\n";
-                        data += "      target: " + effect.GetTarget() + "\n";
-                        data += "      group: " + effect.GetGroup() + "\n";
-                    }
-                }
-                else data += "  passive: {}\n";
-
-                // Embedded
-                if (skill.RequiresEmbed && skill.embedded.Count > 0) {
-                    data += "  embed:\n";
-                    int index = 0;
-                    List<String> used = new List<String>();
-                    foreach (IEffect effect in skill.embedded) {
-                        string key = effect.GetKey() + ";" + effect.GetTarget();
-                        if (used.Contains(key)) continue;
-                        else used.Add(key);
-                        data += "    m" + index++ + ":\n";
-                        data += "      effect: " + effect.GetKey() + "\n";
-                        data += "      target: " + effect.GetTarget() + "\n";
-                        data += "      group: " + effect.GetGroup() + "\n";
-                    }
-                }
-                else data += "  embed: {}\n";
-
-                // Basic attributes
-                data += "  attributes:\n";
-                foreach (Attribute attribute in skill.Attributes) {
-                    if (attribute.Key.Equals("Range") && !skill.RequiresRange) continue;
-                    if (attribute.Key.Equals("Radius") && !skill.RequiresRadius) continue;
-                    if (attribute.Key.Equals("Period") && skill.passive.Count == 0) continue;
-                    data += "    " + attribute.Key + ":\n";
-                    data += "      base: " + attribute.Initial + "\n";
-                    data += "      scale: " + attribute.Scale + "\n";
-                }
-
-                // Active Attributes
-                AttributeSet activeSet = new AttributeSet(AttributeSet.ACTIVE_PREFIX, skill.active);
-                foreach (Attribute attribute in activeSet.attributes) {
-                    data += "    " + attribute.Key + ":\n";
-                    data += "      base: " + attribute.Initial + "\n";
-                    data += "      scale: " + attribute.Scale + "\n";
-                }
-
-                // Passive Attributes
-                AttributeSet passiveSet = new AttributeSet(AttributeSet.PASSIVE_PREFIX, skill.passive);
-                foreach (Attribute attribute in passiveSet.attributes) {
-                    data += "    " + attribute.Key + ":\n";
-                    data += "      base: " + attribute.Initial + "\n";
-                    data += "      scale: " + attribute.Scale + "\n";
-                }
-
-                // Embed Attributes
-                AttributeSet embedSet = new AttributeSet(AttributeSet.EMBED_PREFIX, skill.embedded);
-                if (skill.RequiresEmbed) {
-                    foreach (Attribute attribute in embedSet.attributes) {
-                        data += "    " + attribute.Key + ":\n";
-                        data += "      base: " + attribute.Initial + "\n";
-                        data += "      scale: " + attribute.Scale + "\n";
-                    }
-                }
-
-                // Values
-                List<String> keys = new List<String>();
-                List<Value> values = new List<Value>();
-                bool valueBase = false;
-                foreach (IEffect effect in skill) {
-                    effect.GetValues(values);
-
-                    foreach (Value value in values) {
-                        if (!valueBase) {
-                            valueBase = true;
-                            data += "  values:\n";
-                        }
-                        if (keys.Contains(value.Key)) continue;
-                        else keys.Add(value.Key);
-
-                        data += "    " + value.Key + ": " + value.Number + "\n";
-                    }
-
-                    values.Clear();
-                }
+                sb.Append(skill.data);
             }
             skillList.SelectedIndex = si;
 
-            configText.Text = data;
+            configText.Text = sb.ToString();
         }
 
         /// <summary>
@@ -326,45 +181,16 @@ namespace SkillAPITool {
         private void UpdateClasses() {
             fileLabel.Content = CLASS_FILE;
 
-            string data = "";
             int index = classList.SelectedIndex;
             classList.Items.Clear();
+            sb.Clear();
+            if (index != -1) trees[index].Update();
             foreach (Tree tree in trees) {
                 classList.Items.Add(tree.name);
-
-                // Basic values
-                data += tree.name + ":\n";
-                data += "  prefix: '" + tree.prefix + "'\n";
-                data += "  max-level: " + tree.maxLevel + "\n";
-                data += "  health-base: " + tree.healthBase + "\n";
-                data += "  health-scale: " + tree.healthScale + "\n";
-                data += "  mana-base: " + tree.manaBase + "\n";
-                data += "  mana-scale: " + tree.manaBonus + "\n";
-
-                // Inheritance
-                if (tree.CanInherit) {
-                    data += "  profess-level: " + tree.professLevel + "\n";
-                    data += "  parent: " + tree.parent + "\n";
-                    if (tree.inherit) {
-                        data += "  inherit:\n";
-                        data += "  - " + tree.parent + "\n";
-                    }
-                }
-                else data += "  profess-level: " + tree.professLevel + "\n";
-
-                // Skills
-                if (tree.skills.Count == 0) {
-                    data += "  skills: []\n";
-                }
-                else {
-                    data += "  skills:\n";
-                    foreach (string skill in tree.skills) {
-                        data += "  - " + skill + "\n";
-                    }
-                }
+                sb.Append(tree.data);
             }
             classList.SelectedIndex = index;
-            configText.Text = data;
+            configText.Text = sb.ToString();
         }
 
         /// <summary>
@@ -378,7 +204,7 @@ namespace SkillAPITool {
             FileInfo[] files = dataObject.GetData(DataFormats.FileDrop) as FileInfo[];
 
             foreach (FileInfo file in files) {
-                
+
                 // Skills file
                 if (file.Exists && file.Name.ToLower().Equals("skills.yml")) {
 
@@ -490,6 +316,7 @@ namespace SkillAPITool {
                             else if (data.StartsWith("  skill-req:")) skill.skillReq = data.Substring(13);
                             else if (data.StartsWith("  skill-req-level: ")) skill.skillReqLevel = int.Parse(data.Substring(18));
                             else if (data.StartsWith("  max-level: ")) skill.maxLevel = int.Parse(data.Substring(13));
+                            else if (data.StartsWith("  message: ")) skill.message = data.Substring(11).Replace("'", "");
                         }
 
                         // Add the last attribute if there were any

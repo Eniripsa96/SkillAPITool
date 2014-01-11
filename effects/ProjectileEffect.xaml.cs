@@ -28,6 +28,7 @@ namespace SkillAPITool {
             angleBonusBox.TextChanged += Filter.FilterInt;
             amountBaseBox.TextChanged += Filter.FilterInt;
             amountBonusBox.TextChanged += Filter.FilterInt;
+            usedBox.TextChanged += Filter.FilterInt;
         }
 
         /// <summary>
@@ -93,9 +94,11 @@ namespace SkillAPITool {
         /// Gets the values for the skill
         /// </summary>
         /// <returns>value list</returns>
-        public void GetValues(List<Value> list) { 
-            list.Add(new Value("Projectile", typeBox.SelectedIndex));
+        public void GetValues(List<Value> list) {
+            if (typeBox.SelectedIndex != typeBox.Items.Count - 1) list.Add(new Value("Projectile", typeBox.SelectedIndex));
+            else list.Add(new Value("Projectile", typeBox.Items.Count));
             list.Add(new Value("Spread", spreadBox.SelectedIndex));
+            list.Add(new Value("Use Arrow", int.Parse(usedBox.Text)));
         }
 
         /// <summary>
@@ -123,14 +126,18 @@ namespace SkillAPITool {
         /// <param name="value">value</param>
         public void ApplyValue(Value value) {
             if (value.Key.Equals("Projectile")) {
-                if (typeBox.Items.Count > value.Number && value.Number >= 0) {
-                    typeBox.SelectedIndex = value.Number;
+                if (typeBox.Items.Count > value.Number - 1 && value.Number >= 0) {
+                    if (value.Number == typeBox.Items.Count) typeBox.SelectedIndex = typeBox.Items.Count - 1;
+                    else typeBox.SelectedIndex = value.Number;
                 }
             } 
             if (value.Key.Equals("Spread")) {
                 if (typeBox.Items.Count > value.Number && value.Number >= 0) {
                     spreadBox.SelectedIndex = value.Number;
                 }
+            }
+            if (value.Key.Equals("Use Arrow")) {
+                usedBox.Text = value.Number.ToString();
             }
         }
 

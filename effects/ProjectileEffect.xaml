@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="519" VerticalAlignment="Top" Height="287" Background="White">
+    d:DesignHeight="300" d:DesignWidth="519" VerticalAlignment="Top" Height="312" Background="White">
 
     <Grid Background="White">
         <Grid Background="Black" Margin="6">
@@ -46,13 +46,13 @@
                 <ComboBoxItem Content="Arrow" />
                 <ComboBoxItem Content="Snowball" />
                 <ComboBoxItem Content="Egg" />
-                <ComboBoxItem Content="Fire Charge" />
                 <ComboBoxItem Content="Ghast Fireball" />
-                <ComboBoxItem Content="Wither Skull" />
             </ComboBox>
             <sdk:Label Content="Projectile Type" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,67,160,0" Name="label14" Padding="3,0" VerticalAlignment="Top" />
-            <sdk:Label Content="Embedded effects on hit" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,190,108,0" Name="label1" Padding="3,0" VerticalAlignment="Top" />
+            <sdk:Label Content="Embedded effects on hit" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,220,108,0" Name="label1" Padding="3,0" VerticalAlignment="Top" />
             <Button Background="White" BorderBrush="White" BorderThickness="1" Content="Remove" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="Red" Height="29" Margin="0,0,6,6" Name="removeButton" VerticalAlignment="Bottom" Click="Removed" HorizontalAlignment="Right" Width="205" />
+            <TextBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,190,6,0" Name="usedBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="205" />
+            <sdk:Label Content="Projectiles Used" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,190,162,0" Name="label2" Padding="3,0" VerticalAlignment="Top" />
         </Grid>
     </Grid>
 </UserControl>

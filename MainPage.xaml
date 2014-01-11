@@ -48,8 +48,8 @@
         </ScrollViewer>
         <sdk:Label Content="Classes.yml" FontFamily="Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="White" Height="29" Margin="711,39,0,0" Name="fileLabel" Padding="3,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="213" />
         <TextBlock FontSize="18" Foreground="White" Margin="716,0,0,5" Name="textBlock1" Text="Drag an drop files into the output above to load it into the editor." VerticalAlignment="Bottom" TextWrapping="Wrap" Height="43" FontFamily="Sertig.otf#Sertig" HorizontalAlignment="Left" Width="229" Padding="10,0" />
-        <sdk:Label Content="Skill API" FontFamily="Mojave.ttf#Mojave" FontSize="32" FontWeight="Bold" Foreground="#FFFFAB3C" Height="45" HorizontalAlignment="Left" Name="label1" Padding="3,0" VerticalAlignment="Top" Width="146" />
-        <sdk:Label Content="Dynamic Skill Editor" FontFamily="Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="White" Height="29" HorizontalAlignment="Left" Margin="0,39,0,0" Name="label2" Padding="3,0" VerticalAlignment="Top" Width="177" />
+        <sdk:Label Content="Skill API" FontFamily="Mojave.ttf#Mojave" FontSize="32" FontWeight="Bold" Foreground="#FFFFAB3C" Height="45" HorizontalAlignment="Left" Name="label1" Padding="3,0" VerticalAlignment="Top" Width="703" />
+        <sdk:Label Content="Dynamic Skill Editor" FontFamily="Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="White" Height="29" HorizontalAlignment="Left" Margin="0,39,0,0" Name="label2" Padding="3,0" VerticalAlignment="Top" Width="703" />
         <Button Background="White" BorderBrush="Black" BorderThickness="1" Content="Create New" FontFamily="Sertig.otf#Sertig" FontSize="22" FontWeight="Bold" Foreground="#FF4A4A4A" Height="30" HorizontalAlignment="Left" Margin="6,0,0,9" Name="button1" Padding="0" VerticalAlignment="Bottom" Width="146" Click="CreateNew" />
     </Grid>
 </UserControl>

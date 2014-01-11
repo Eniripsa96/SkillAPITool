@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Text;
 
 namespace SkillAPITool {
 
@@ -32,7 +33,9 @@ namespace SkillAPITool {
         public string skillReq = "";
         public int maxLevel = 5;
         public int skillReqLevel = 1;
-        
+
+        private StringBuilder sb = new StringBuilder();
+        public string data;
 
         /// <summary>
         /// Whether or not the skill requires an item
@@ -144,6 +147,251 @@ namespace SkillAPITool {
                     yield return effect;
                 }
             }
+        }
+
+        public void Update() {
+
+            sb.Clear();
+                        
+            // Basic
+            sb.Append(name); 
+            sb.Append(":\n");
+            sb.Append("  type: "); 
+            sb.Append(type); 
+            sb.Append("\n");
+            sb.Append("  indicator: "); 
+            sb.Append(indicator); 
+            sb.Append("\n");
+            sb.Append("  max-level: "); 
+            sb.Append(maxLevel); 
+            sb.Append("\n");
+
+            // Skill requirement
+            if (RequiresSkill) {
+                sb.Append("  skill-req: "); 
+                sb.Append(skillReq); 
+                sb.Append("\n");
+                sb.Append("  skill-req-level: "); 
+                sb.Append(skillReqLevel); 
+                sb.Append("\n");
+            }
+
+            // Item requirement
+            if (RequiresItem) {
+                sb.Append("  item-req: "); 
+                sb.Append(itemReq);
+            }
+
+            // Description
+            if (HasDescription) {
+                sb.Append("  description:\n");
+                List<String> lines = TextUtil.SplitDescription(description);
+                foreach (string line in lines) {
+                    sb.Append("  - '"); 
+                    sb.Append(line); 
+                    sb.Append("'\n");
+                }
+            }
+            else sb.Append("  description: []\n");
+
+            // Message
+            if (hasMessage) {
+                sb.Append("  message: '"); 
+                sb.Append(message.Replace("'", "")); 
+                sb.Append("'\n");
+            }
+
+            // Actives
+            if (active.Count > 0) {
+                sb.Append("  active:\n");
+                int index = 0;
+                List<String> used = new List<String>();
+                foreach (IEffect effect in active) {
+                    string key = effect.GetKey() + ";" + effect.GetTarget();
+                    if (used.Contains(key)) continue;
+                    else if (effect is AttackModifierEffect) {
+                        string key2 = "DefenseModifier;" + effect.GetTarget();
+                        if (used.Contains(key2)) continue;
+                        else used.Add(key);
+                    }
+                    else if (effect is DefenseModifierEffect) {
+                        string key2 = "AttackModifier;" + effect.GetTarget();
+                        if (used.Contains(key2)) continue;
+                        else used.Add(key);
+                    }
+                    else used.Add(key);
+                    sb.Append("    m"); sb.Append(index++); 
+                    sb.Append(":\n");
+                    sb.Append("      effect: "); 
+                    sb.Append(effect.GetKey()); 
+                    sb.Append("\n");
+                    sb.Append("      target: "); 
+                    sb.Append(effect.GetTarget()); 
+                    sb.Append("\n");
+                    sb.Append("      group: "); 
+                    sb.Append(effect.GetGroup()); 
+                    sb.Append("\n");
+                }
+            }
+            else sb.Append("  active: {}\n");
+
+            // Passives
+            if (passive.Count > 0) {
+                sb.Append("  passive:\n");
+                int index = 0;
+                List<String> used = new List<String>();
+                foreach (IEffect effect in passive) {
+                    string key = effect.GetKey() + ";" + effect.GetTarget();
+                    if (used.Contains(key)) continue;
+                    else if (effect is AttackModifierEffect) {
+                        string key2 = "DefenseModifier;" + effect.GetTarget();
+                        if (used.Contains(key2)) continue;
+                        else used.Add(key);
+                    }
+                    else if (effect is DefenseModifierEffect) {
+                        string key2 = "AttackModifier;" + effect.GetTarget();
+                        if (used.Contains(key2)) continue;
+                        else used.Add(key);
+                    }
+                    else used.Add(key);
+                    sb.Append("    m"); 
+                    sb.Append(index++); 
+                    sb.Append(":\n");
+                    sb.Append("      effect: "); 
+                    sb.Append(effect.GetKey()); 
+                    sb.Append("\n");
+                    sb.Append("      target: "); 
+                    sb.Append(effect.GetTarget()); 
+                    sb.Append("\n");
+                    sb.Append("      group: "); 
+                    sb.Append(effect.GetGroup()); 
+                    sb.Append("\n");
+                }
+            }
+            else sb.Append("  passive: {}\n");
+
+            // Embedded
+            if (RequiresEmbed && embedded.Count > 0) {
+                sb.Append("  embed:\n");
+                int index = 0;
+                List<String> used = new List<String>();
+                foreach (IEffect effect in embedded) {
+                    string key = effect.GetKey() + ";" + effect.GetTarget();
+                    if (used.Contains(key)) continue;
+                    else if (effect is AttackModifierEffect) {
+                        string key2 = "DefenseModifier;" + effect.GetTarget();
+                        if (used.Contains(key2)) continue;
+                        else used.Add(key);
+                    }
+                    else if (effect is DefenseModifierEffect) {
+                        string key2 = "AttackModifier;" + effect.GetTarget();
+                        if (used.Contains(key2)) continue;
+                        else used.Add(key);
+                    }
+                    else used.Add(key);
+                    sb.Append("    m"); 
+                    sb.Append(index++); 
+                    sb.Append(":\n");
+                    sb.Append("      effect: "); 
+                    sb.Append(effect.GetKey()); 
+                    sb.Append("\n");
+                    sb.Append("      target: "); 
+                    sb.Append(effect.GetTarget()); 
+                    sb.Append("\n");
+                    sb.Append("      group: "); 
+                    sb.Append(effect.GetGroup()); 
+                    sb.Append("\n");
+                }
+            }
+            else sb.Append("  embed: {}\n");
+
+            // Basic attributes
+            sb.Append("  attributes:\n");
+            foreach (Attribute attribute in Attributes) {
+                if (attribute.Key.Equals("Range") && !RequiresRange) continue;
+                if (attribute.Key.Equals("Radius") && !RequiresRadius) continue;
+                if (attribute.Key.Equals("Period") && passive.Count == 0) continue;
+                sb.Append("    "); 
+                sb.Append(attribute.Key); 
+                sb.Append(":\n");
+                sb.Append("      base: "); 
+                sb.Append(attribute.Initial); 
+                sb.Append("\n");
+                sb.Append("      scale: "); 
+                sb.Append(attribute.Scale); 
+                sb.Append("\n");
+            }
+
+            // Active Attributes
+            AttributeSet activeSet = new AttributeSet(AttributeSet.ACTIVE_PREFIX, active);
+            foreach (Attribute attribute in activeSet.attributes) {
+                sb.Append("    "); 
+                sb.Append(attribute.Key); 
+                sb.Append(":\n");
+                sb.Append("      base: "); 
+                sb.Append(attribute.Initial); 
+                sb.Append("\n");
+                sb.Append("      scale: "); 
+                sb.Append(attribute.Scale); 
+                sb.Append("\n");
+            }
+
+            // Passive Attributes
+            AttributeSet passiveSet = new AttributeSet(AttributeSet.PASSIVE_PREFIX, passive);
+            foreach (Attribute attribute in passiveSet.attributes) {
+                sb.Append("    "); 
+                sb.Append(attribute.Key); 
+                sb.Append(":\n");
+                sb.Append("      base: "); 
+                sb.Append(attribute.Initial); 
+                sb.Append("\n");
+                sb.Append("      scale: "); 
+                sb.Append(attribute.Scale); 
+                sb.Append("\n");
+            }
+
+            // Embed Attributes
+            AttributeSet embedSet = new AttributeSet(AttributeSet.EMBED_PREFIX, embedded);
+            if (RequiresEmbed) {
+                foreach (Attribute attribute in embedSet.attributes) {
+                    sb.Append("    "); 
+                    sb.Append(attribute.Key); 
+                    sb.Append(":\n");
+                    sb.Append("      base: "); 
+                    sb.Append(attribute.Initial); 
+                    sb.Append("\n");
+                    sb.Append("      scale: "); 
+                    sb.Append(attribute.Scale); 
+                    sb.Append("\n");
+                }
+            }
+
+            // Values
+            List<String> keys = new List<String>();
+            List<Value> values = new List<Value>();
+            bool valueBase = false;
+            foreach (IEffect effect in this) {
+                effect.GetValues(values);
+
+                foreach (Value value in values) {
+                    if (!valueBase) {
+                        valueBase = true;
+                        sb.Append("  values:\n");
+                    }
+                    if (keys.Contains(value.Key)) continue;
+                    else keys.Add(value.Key);
+
+                    sb.Append("    "); 
+                    sb.Append(value.Key); 
+                    sb.Append(": "); 
+                    sb.Append(value.Number); 
+                    sb.Append("\n");
+                }
+
+                values.Clear();
+            }
+
+            data = sb.ToString();
         }
     }
 }
