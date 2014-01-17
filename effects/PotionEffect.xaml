@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="519" VerticalAlignment="Top" Height="267" Background="White">
+    d:DesignHeight="300" d:DesignWidth="519" VerticalAlignment="Top" Height="330" Background="White">
 
     <Grid Background="White">
         <Grid Background="Black" Margin="6">
@@ -16,6 +16,7 @@
                         <GradientStop Color="Black" Offset="1" />
                     </LinearGradientBrush>
                 </ComboBox.Background>
+                <ComboBoxItem Content="Area" />
                 <ComboBoxItem Content="Cone" />
                 <ComboBoxItem Content="Linear" />
                 <ComboBoxItem Content="Self" />
@@ -37,12 +38,12 @@
             </ComboBox>
             <sdk:Label Content="Target Group" FontFamily="../Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,68,160,0" Name="label2" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
             <sdk:Label Content="Potion" FontFamily="../Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="#FFFFAB3C" Height="27" Margin="6,6,160,0" Name="label6" Padding="3,0" VerticalAlignment="Top" />
-            <sdk:Label Content="Tier" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,128,162,0" Name="label7" Padding="3,0" VerticalAlignment="Top" />
-            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,128,106,0" Name="tierBaseBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="105" FontFamily="../Sertig.otf#Sertig" />
-            <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,128,74,0" Name="label8" Padding="0" VerticalAlignment="Top" Width="26" />
-            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,128,18,0" Name="tierBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" FontFamily="../Sertig.otf#Sertig" />
-            <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,128,6,0" Name="label9" Padding="0" VerticalAlignment="Top" Width="16" />
-            <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,97,6,0" Name="typeBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="205" FontFamily="../Sertig.otf#Sertig">
+            <sdk:Label Content="Tier" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,98,217,0" Name="label7" Padding="3,0" VerticalAlignment="Top" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,98,106,0" Name="tierBaseBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="105" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,98,74,0" Name="label8" Padding="0" VerticalAlignment="Top" Width="26" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,98,18,0" Name="tierBonusBox" Padding="2,0" Text="0" VerticalAlignment="Top" Width="50" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,98,6,0" Name="label9" Padding="0" VerticalAlignment="Top" Width="16" />
+            <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Left" Margin="6,189,0,0" Name="typeBox1" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="162" FontFamily="../Sertig.otf#Sertig">
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="0" />
@@ -71,13 +72,163 @@
                 <ComboBoxItem Content="Absorption" />
                 <ComboBoxItem Content="Saturation" />
             </ComboBox>
-            <sdk:Label Content="Potion Type" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,97,160,0" Name="label3" Padding="3,0" VerticalAlignment="Top" />
-            <sdk:Label Content="Duration" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,158,162,0" Name="label4" Padding="3,0" VerticalAlignment="Top" />
-            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,158,106,0" Name="durationBaseBox" Padding="2,0" Text="5" VerticalAlignment="Top" Width="105" FontFamily="../Sertig.otf#Sertig" />
-            <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,158,74,0" Name="label5" Padding="0" VerticalAlignment="Top" Width="26" />
-            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,158,18,0" Name="durationBonusBox" Padding="2,0" Text="2" VerticalAlignment="Top" Width="50" FontFamily="../Sertig.otf#Sertig" />
-            <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,158,6,0" Name="label10" Padding="0" VerticalAlignment="Top" Width="16" />
+            <sdk:Label Content="Potions" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,159,18,0" Name="label3" Padding="3,0" VerticalAlignment="Top" />
+            <sdk:Label Content="Duration" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,128,217,0" Name="label4" Padding="3,0" VerticalAlignment="Top" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,128,106,0" Name="durationBaseBox" Padding="2,0" Text="5" VerticalAlignment="Top" Width="105" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,128,74,0" Name="label5" Padding="0" VerticalAlignment="Top" Width="26" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,128,18,0" Name="durationBonusBox" Padding="2,0" Text="2" VerticalAlignment="Top" Width="50" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,128,6,0" Name="label10" Padding="0" VerticalAlignment="Top" Width="16" />
             <Button Background="White" BorderBrush="White" BorderThickness="1" Content="Remove" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="Red" Height="29" HorizontalAlignment="Right" Margin="0,0,6,6" Name="removeButton" VerticalAlignment="Bottom" Width="205" Click="Removed" />
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" Margin="341,189,6,0" Name="typeBox3" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Speed" />
+                <ComboBoxItem Content="Slow" />
+                <ComboBoxItem Content="Haste" />
+                <ComboBoxItem Content="Mining Fatigue" />
+                <ComboBoxItem Content="Strength" />
+                <ComboBoxItem Content="Jump Boost" />
+                <ComboBoxItem Content="Nausea" />
+                <ComboBoxItem Content="Regeneration" />
+                <ComboBoxItem Content="Resistance" />
+                <ComboBoxItem Content="Fire Resistance" />
+                <ComboBoxItem Content="Water Breathing" />
+                <ComboBoxItem Content="Invisibility" />
+                <ComboBoxItem Content="Blindness" />
+                <ComboBoxItem Content="Night Vision" />
+                <ComboBoxItem Content="Hunger" />
+                <ComboBoxItem Content="Weakness" />
+                <ComboBoxItem Content="Poison" />
+                <ComboBoxItem Content="Wither" />
+                <ComboBoxItem Content="Health Boost" />
+                <ComboBoxItem Content="Absorption" />
+                <ComboBoxItem Content="Saturation" />
+            </ComboBox>
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Left" Margin="174,189,0,0" Name="typeBox2" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="160">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Speed" />
+                <ComboBoxItem Content="Slow" />
+                <ComboBoxItem Content="Haste" />
+                <ComboBoxItem Content="Mining Fatigue" />
+                <ComboBoxItem Content="Strength" />
+                <ComboBoxItem Content="Jump Boost" />
+                <ComboBoxItem Content="Nausea" />
+                <ComboBoxItem Content="Regeneration" />
+                <ComboBoxItem Content="Resistance" />
+                <ComboBoxItem Content="Fire Resistance" />
+                <ComboBoxItem Content="Water Breathing" />
+                <ComboBoxItem Content="Invisibility" />
+                <ComboBoxItem Content="Blindness" />
+                <ComboBoxItem Content="Night Vision" />
+                <ComboBoxItem Content="Hunger" />
+                <ComboBoxItem Content="Weakness" />
+                <ComboBoxItem Content="Poison" />
+                <ComboBoxItem Content="Wither" />
+                <ComboBoxItem Content="Health Boost" />
+                <ComboBoxItem Content="Absorption" />
+                <ComboBoxItem Content="Saturation" />
+            </ComboBox>
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" Margin="341,220,6,0" Name="typeBox6" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Speed" />
+                <ComboBoxItem Content="Slow" />
+                <ComboBoxItem Content="Haste" />
+                <ComboBoxItem Content="Mining Fatigue" />
+                <ComboBoxItem Content="Strength" />
+                <ComboBoxItem Content="Jump Boost" />
+                <ComboBoxItem Content="Nausea" />
+                <ComboBoxItem Content="Regeneration" />
+                <ComboBoxItem Content="Resistance" />
+                <ComboBoxItem Content="Fire Resistance" />
+                <ComboBoxItem Content="Water Breathing" />
+                <ComboBoxItem Content="Invisibility" />
+                <ComboBoxItem Content="Blindness" />
+                <ComboBoxItem Content="Night Vision" />
+                <ComboBoxItem Content="Hunger" />
+                <ComboBoxItem Content="Weakness" />
+                <ComboBoxItem Content="Poison" />
+                <ComboBoxItem Content="Wither" />
+                <ComboBoxItem Content="Health Boost" />
+                <ComboBoxItem Content="Absorption" />
+                <ComboBoxItem Content="Saturation" />
+            </ComboBox>
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Left" Margin="174,220,0,0" Name="typeBox5" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="160">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Speed" />
+                <ComboBoxItem Content="Slow" />
+                <ComboBoxItem Content="Haste" />
+                <ComboBoxItem Content="Mining Fatigue" />
+                <ComboBoxItem Content="Strength" />
+                <ComboBoxItem Content="Jump Boost" />
+                <ComboBoxItem Content="Nausea" />
+                <ComboBoxItem Content="Regeneration" />
+                <ComboBoxItem Content="Resistance" />
+                <ComboBoxItem Content="Fire Resistance" />
+                <ComboBoxItem Content="Water Breathing" />
+                <ComboBoxItem Content="Invisibility" />
+                <ComboBoxItem Content="Blindness" />
+                <ComboBoxItem Content="Night Vision" />
+                <ComboBoxItem Content="Hunger" />
+                <ComboBoxItem Content="Weakness" />
+                <ComboBoxItem Content="Poison" />
+                <ComboBoxItem Content="Wither" />
+                <ComboBoxItem Content="Health Boost" />
+                <ComboBoxItem Content="Absorption" />
+                <ComboBoxItem Content="Saturation" />
+            </ComboBox>
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Left" Margin="6,220,0,0" Name="typeBox4" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="162">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Speed" />
+                <ComboBoxItem Content="Slow" />
+                <ComboBoxItem Content="Haste" />
+                <ComboBoxItem Content="Mining Fatigue" />
+                <ComboBoxItem Content="Strength" />
+                <ComboBoxItem Content="Jump Boost" />
+                <ComboBoxItem Content="Nausea" />
+                <ComboBoxItem Content="Regeneration" />
+                <ComboBoxItem Content="Resistance" />
+                <ComboBoxItem Content="Fire Resistance" />
+                <ComboBoxItem Content="Water Breathing" />
+                <ComboBoxItem Content="Invisibility" />
+                <ComboBoxItem Content="Blindness" />
+                <ComboBoxItem Content="Night Vision" />
+                <ComboBoxItem Content="Hunger" />
+                <ComboBoxItem Content="Weakness" />
+                <ComboBoxItem Content="Poison" />
+                <ComboBoxItem Content="Wither" />
+                <ComboBoxItem Content="Health Boost" />
+                <ComboBoxItem Content="Absorption" />
+                <ComboBoxItem Content="Saturation" />
+            </ComboBox>
         </Grid>
     </Grid>
 </UserControl>

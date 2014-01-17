@@ -75,9 +75,11 @@ namespace SkillAPITool {
             rangeBonusBox.Text = skill.range.Scale.ToString();
             radiusBaseBox.Text = skill.radius.Initial.ToString();
             radiusBonusBox.Text = skill.radius.Scale.ToString();
+            permissionBox.Text = skill.permissions;
+            needPermBox.SelectedIndex = skill.needsPermission ? 1 : 0;
 
             // Required skill options
-            foreach (Skill s in GetParent().skills) {
+            foreach (Skill s in MainPage.skills) {
                 if (s != skill) {
                     requiredSkillBox.Items.Add(s.name);
                 }
@@ -132,7 +134,7 @@ namespace SkillAPITool {
         /// </summary>
         public void SetVisibility() {
 
-            int y = 362;
+            int y = 422;
 
             // Skill requirement
             if (requiredSkillBox.SelectedIndex == 0) {
@@ -298,6 +300,8 @@ namespace SkillAPITool {
             skill.radius.Scale = double.Parse(radiusBonusBox.Text);
             skill.period.Initial = double.Parse(periodBaseBox.Text);
             skill.period.Scale = double.Parse(periodBonusBox.Text);
+            skill.permissions = permissionBox.Text;
+            skill.needsPermission = needPermBox.SelectedIndex == 1;
         }
 
         /// <summary>

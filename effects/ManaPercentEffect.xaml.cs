@@ -15,18 +15,15 @@ namespace SkillAPITool {
     /// <summary>
     /// Damage effect
     /// </summary>
-    public partial class StatusEffect : IEffect {
-
-        private ComboBox[] typeBoxes;
+    public partial class ManaPercentEffect : IEffect {
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public StatusEffect() {
+        public ManaPercentEffect() {
             InitializeComponent();
-            typeBoxes = new ComboBox[] { typeBox1, typeBox2, typeBox3, typeBox4, typeBox5, typeBox6 };
-            lengthBaseBox.TextChanged += Filter.FilterDouble;
-            lengthBonusBox.TextChanged += Filter.FilterDouble;
+            manaBaseBox.TextChanged += Filter.FilterNInt;
+            manaBonusBox.TextChanged += Filter.FilterNInt;
         }
 
         /// <summary>
@@ -34,7 +31,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <param name="target">target</param>
         /// <param name="group">group</param>
-        public StatusEffect(string target, string group) 
+        public ManaPercentEffect(string target, string group) 
             : this() 
         {
             foreach (object obj in targetBox.Items) {
@@ -75,7 +72,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>key</returns>
         public string GetKey() {
-            return "Status";
+            return "ManaPercent";
         }
 
         /// <summary>
@@ -99,32 +96,23 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>attribute list</returns>
         public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Length", double.Parse(lengthBaseBox.Text), double.Parse(lengthBonusBox.Text)));
+            list.Add(new Attribute("Percent Mana", int.Parse(manaBaseBox.Text), int.Parse(manaBonusBox.Text)));
         }
 
         /// <summary>
         /// Gets the values for the skill
         /// </summary>
         /// <returns>value list</returns>
-        public void GetValues(List<Value> list) {
-            int value = 0;
-            int m = 1;
-            for (int i = 0; i < typeBoxes.Length; i++) {
-                int num = typeBoxes[i].SelectedIndex;
-                value += m * num;
-                if (num > 0 || i == 0) m *= 32;
-            }
-            list.Add(new Value("Status", value));
-        }
+        public void GetValues(List<Value> list) { }
 
         /// <summary>
         /// Applies a loaded attribute
         /// </summary>
         /// <param name="attribute">attribute</param>
         public void ApplyAttribute(Attribute attribute) {
-            if (attribute.Key.EndsWith("Length")) {
-                lengthBaseBox.Text = attribute.Initial.ToString();
-                lengthBonusBox.Text = attribute.Scale.ToString();
+            if (attribute.Key.EndsWith("Percent Mana")) {
+                manaBaseBox.Text = attribute.Initial.ToString();
+                manaBonusBox.Text = attribute.Scale.ToString();
             }
         }
 
@@ -132,21 +120,7 @@ namespace SkillAPITool {
         /// Applies a loaded value
         /// </summary>
         /// <param name="value">value</param>
-        public void ApplyValue(Value value) {
-            if (value.Key.Equals("Status")) {
-                int num = value.Number + 1;
-                int box = 0;
-                while (num > 0) {
-                    int index = (num - 1) % 32;
-                    num /= 32;
-                    if (box > 0) index++;
-                    if (typeBoxes[box].Items.Count > index) {
-                        typeBoxes[box].SelectedIndex = index;
-                        box++;
-                    }
-                }
-            }
-        }
+        public void ApplyValue(Value value) { }
 
         /// <summary>
         /// Gets the strings for the skill

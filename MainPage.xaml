@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     mc:Ignorable="d"
-    d:DesignHeight="406" d:DesignWidth="950" MinWidth="936">
+    d:DesignHeight="406" d:DesignWidth="900" MinWidth="734">
     <UserControl.Resources>
         <DataTemplate x:Key="InvalidTabHeader">
             <Border BorderBrush="Red" BorderThickness="1">
@@ -21,16 +21,16 @@
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid x:Name="LayoutRoot" Background="#FF181818">
-        <sdk:TabControl HorizontalAlignment="Left" Name="explorerTab" Width="153" Background="Black" Margin="0,74,0,49" SelectionChanged="TabChanged" Padding="0">
-            <sdk:TabItem Header="skill" Name="skillTab" FontFamily="Sertig.otf#Sertig" FontWeight="Bold" FontSize="22" Background="#FF030303" Padding="18,3" Margin="3,0">
+    <Grid x:Name="LayoutRoot" Background="#FF181818" Width="Auto">
+        <sdk:TabControl HorizontalAlignment="Left" Name="explorerTab" Width="179" Background="Black" Margin="0,74,0,49" SelectionChanged="TabChanged" Padding="0">
+            <sdk:TabItem Header="skill" Name="skillTab" FontFamily="Sertig.otf#Sertig" FontWeight="Bold" FontSize="22" Background="#FF030303" Padding="25,3" Margin="0">
                 <ListBox Height="Auto" Name="skillList" Width="Auto" FontSize="18" Background="#FF2D2D2D" Foreground="White" SelectionChanged="SkillSelected" FontFamily="Sertig.otf#Sertig" />
             </sdk:TabItem>
-            <sdk:TabItem Header="class" FontSize="22" FontWeight="Bold" Name="classTab" FontFamily="Sertig.otf#Sertig" Padding="15,3" Margin="3,0">
+            <sdk:TabItem Header="class" FontSize="22" FontWeight="Bold" Name="classTab" FontFamily="Sertig.otf#Sertig" Padding="21,3" Margin="0">
                 <ListBox Height="Auto" Name="classList" Width="Auto" FontSize="18" Background="#FF333333" SelectionChanged="ClassSelected" Foreground="White" FontFamily="Sertig.otf#Sertig" />
             </sdk:TabItem>
         </sdk:TabControl>
-        <ScrollViewer Margin="158,74,0,0" Name="scrollView" Background="#FF545454" Padding="1" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Width="547">
+        <ScrollViewer Margin="187,72,0,51" Name="scrollView" Background="#FF545454" Padding="1" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Width="547">
             <ScrollViewer.BorderBrush>
                 <LinearGradientBrush>
                     <GradientStop Color="Black" Offset="0" />
@@ -41,15 +41,25 @@
             </ScrollViewer.BorderBrush>
             <Grid Height="Auto" Name="mainGrid" Width="Auto" Background="#FF2D2D2D"></Grid>
         </ScrollViewer>
-        <ScrollViewer Margin="711,74,0,49" Name="scrollViewer1" Background="Black" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Width="239">
-            <Grid Height="Auto" Name="grid1" Width="Auto">
-                <TextBox Margin="0" Name="configText" Background="Black" Foreground="White" TextWrapping="Wrap" FontWeight="Bold" AllowDrop="True" FontFamily="Sertig.otf#Sertig" Text="Test" FontSize="18" Drop="DropFile" />
-            </Grid>
-        </ScrollViewer>
-        <sdk:Label Content="Classes.yml" FontFamily="Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="White" Height="29" Margin="711,39,0,0" Name="fileLabel" Padding="3,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="213" />
-        <TextBlock FontSize="18" Foreground="White" Margin="716,0,0,5" Name="textBlock1" Text="Drag an drop files into the output above to load it into the editor." VerticalAlignment="Bottom" TextWrapping="Wrap" Height="43" FontFamily="Sertig.otf#Sertig" HorizontalAlignment="Left" Width="229" Padding="10,0" />
         <sdk:Label Content="Skill API" FontFamily="Mojave.ttf#Mojave" FontSize="32" FontWeight="Bold" Foreground="#FFFFAB3C" Height="45" HorizontalAlignment="Left" Name="label1" Padding="3,0" VerticalAlignment="Top" Width="703" />
-        <sdk:Label Content="Dynamic Skill Editor" FontFamily="Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="White" Height="29" HorizontalAlignment="Left" Margin="0,39,0,0" Name="label2" Padding="3,0" VerticalAlignment="Top" Width="703" />
-        <Button Background="White" BorderBrush="Black" BorderThickness="1" Content="Create New" FontFamily="Sertig.otf#Sertig" FontSize="22" FontWeight="Bold" Foreground="#FF4A4A4A" Height="30" HorizontalAlignment="Left" Margin="6,0,0,9" Name="button1" Padding="0" VerticalAlignment="Bottom" Width="146" Click="CreateNew" />
+        <sdk:Label Content="Dynamic Skill Editor" FontFamily="Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="White" Height="29" HorizontalAlignment="Left" Margin="0,39,0,0" Name="label2" Padding="3,0" VerticalAlignment="Top" Width="179" />
+        <Button Background="White" BorderBrush="Black" BorderThickness="1" Content="New" FontFamily="Sertig.otf#Sertig" FontSize="22" FontWeight="Bold" Foreground="#FF4A4A4A" Height="30" HorizontalAlignment="Left" Margin="6,0,0,9" Name="button1" Padding="0" VerticalAlignment="Bottom" Width="103" Click="CreateNew" />
+        <Button Background="White" BorderBrush="Black" BorderThickness="1" Content="Delete" FontFamily="Sertig.otf#Sertig" FontSize="22" FontWeight="Bold" Foreground="Red" Height="30" HorizontalAlignment="Left" Margin="115,0,0,9" Name="deleteButton" Padding="0" VerticalAlignment="Bottom" Width="63" Click="delete" />
+        <Button Background="White" BorderBrush="Black" BorderThickness="1" Content="Save" FontFamily="Sertig.otf#Sertig" FontSize="22" FontWeight="Bold" Foreground="#FF4A4A4A" HorizontalAlignment="Left" Margin="454,0,0,9" Name="saveButton" Padding="0" Width="268" Height="30" VerticalAlignment="Bottom" Click="saveButton_Click" Visibility="Collapsed" />
+        <sdk:Label Content="Project Directory" FontFamily="Mojave.ttf#Mojave" FontSize="18" FontWeight="Bold" Foreground="White" Height="34" HorizontalAlignment="Left" Margin="579,11,0,0" Name="directoryTitle" Padding="3,0" VerticalAlignment="Top" Width="143" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="189,39,0,0" Name="directoryLabel" Text="TextBlock" VerticalAlignment="Top" TextAlignment="Right" FontFamily="Sertig.otf#Sertig" Foreground="White" FontSize="20" Width="533" Padding="3,0" />
+        <TextBlock FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" HorizontalAlignment="Left" Margin="405,11,0,0" Name="downloadLabel" Padding="3,0" Text="Downlaod the application for automatic saving and loading!" TextAlignment="Right" VerticalAlignment="Top" Width="483" />
+        <TextBlock FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" HorizontalAlignment="Left" Margin="405,39,0,0" Name="instructionLabel" Padding="3,0" Text="Right click anywhere to download the application" TextAlignment="Right" VerticalAlignment="Top" Width="483" />
+        <Grid HorizontalAlignment="Left" Margin="739,74,0,53" Name="onlineGrid" Width="149">
+            <Button Background="White" BorderBrush="Black" BorderThickness="1" Content="Save Skills" FontFamily="Sertig.otf#Sertig" FontSize="22" FontWeight="Bold" Foreground="#FF4A4A4A" Height="30" HorizontalAlignment="Left" Margin="0,6,0,0" Name="saveSkillButton" Padding="0" VerticalAlignment="Top" Width="149" Click="saveSkillButton_Click" />
+            <Button Background="White" BorderBrush="Black" BorderThickness="1" Content="Save Classes" FontFamily="Sertig.otf#Sertig" FontSize="22" FontWeight="Bold" Foreground="#FF4A4A4A" Height="30" HorizontalAlignment="Left" Margin="0,85,0,0" Name="saveClassButton" Padding="0" VerticalAlignment="Top" Width="149" Click="saveClassButton_Click" />
+            <TextBlock FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" HorizontalAlignment="Left" Margin="0,39,0,0" Name="textBlock1" Padding="3,0" Text="Save as skills.yml" TextAlignment="Center" VerticalAlignment="Top" Width="149" />
+            <TextBlock FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" HorizontalAlignment="Left" Margin="0,122,0,0" Name="textBlock2" Padding="3,0" Text="Save as classes.yml" TextAlignment="Center" VerticalAlignment="Top" Width="149" />
+            <Grid Name="grid3" Width="Auto" Background="White" Margin="0,162,0,0">
+                <Grid Margin="3" Name="grid2" Background="#FF262626" Drop="DropFile" AllowDrop="True">
+                    <TextBlock FontFamily="Sertig.otf#Sertig" FontSize="20" Foreground="White" HorizontalAlignment="Stretch" Margin="0" Name="textBlock3" Padding="3,15" Text="Drop skills.yml or classes.yml in here to load it in" TextAlignment="Center" VerticalAlignment="Stretch" Width="Auto" TextWrapping="Wrap" OpacityMask="{x:Null}" Height="100" IsHitTestVisible="False" />
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

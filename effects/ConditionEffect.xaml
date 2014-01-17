@@ -79,6 +79,45 @@
                 <ComboBoxItem Content="Saturation" />
                 <ComboBoxItem Content="Potion" />
                 <ComboBoxItem Content="Status" />
+                <ComboBoxItem Content="Beach Biome" />
+                <ComboBoxItem Content="Desert Biome" />
+                <ComboBoxItem Content="Desert Hills Biome" />
+                <ComboBoxItem Content="Extreme Hills Biome" />
+                <ComboBoxItem Content="Forest Biome" />
+                <ComboBoxItem Content="Forest Hills Biome" />
+                <ComboBoxItem Content="Frozen Ocean Biome" />
+                <ComboBoxItem Content="Frozen River Biome" />
+                <ComboBoxItem Content="Hell Biome" />
+                <ComboBoxItem Content="Ice Mountains Biome" />
+                <ComboBoxItem Content="Ice Plains Biome" />
+                <ComboBoxItem Content="Jungle Biome" />
+                <ComboBoxItem Content="Jungle Hills Biome" />
+                <ComboBoxItem Content="Mushroom Island Biome" />
+                <ComboBoxItem Content="Mushroom Shore Biome" />
+                <ComboBoxItem Content="Ocean Biome" />
+                <ComboBoxItem Content="Plains Biome" />
+                <ComboBoxItem Content="River Biome" />
+                <ComboBoxItem Content="Sky Biome" />
+                <ComboBoxItem Content="Small Mountains Biome" />
+                <ComboBoxItem Content="Swampland Biome" />
+                <ComboBoxItem Content="Taiga Biome" />
+                <ComboBoxItem Content="Taiga Hills Biome" />
+                <ComboBoxItem Content="Daytime" />
+                <ComboBoxItem Content="Nighttime" />
+                <ComboBoxItem Content="In Water" />
+                <ComboBoxItem Content="Out of Water" />
+                <ComboBoxItem Content="Using Axe" />
+                <ComboBoxItem Content="Using Hoe" />
+                <ComboBoxItem Content="Using Pickaxe" />
+                <ComboBoxItem Content="Using Shovel" />
+                <ComboBoxItem Content="Using Sword" />
+                <ComboBoxItem Content="Using Wood Tool" />
+                <ComboBoxItem Content="Using Stone Tool" />
+                <ComboBoxItem Content="Using Iron Tool" />
+                <ComboBoxItem Content="Using Gold Tool" />
+                <ComboBoxItem Content="Using Diamond Tool" />
+                <ComboBoxItem Content="Target Facing Towards" />
+                <ComboBoxItem Content="Target Facing Away" />
             </ComboBox>
             <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,160,401,0" Name="operator1" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="100" SelectionChanged="UpdateEnabled">
                 <ComboBox.Background>
@@ -95,84 +134,6 @@
                 <ComboBoxItem Content="XOR" />
                 <ComboBoxItem Content="XNOR" />
             </ComboBox>
-            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" Margin="112,160,6,0" Name="condition2" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" IsEnabled="False">
-                <ComboBox.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0" />
-                        <GradientStop Color="#FF3A3A3A" Offset="1" />
-                    </LinearGradientBrush>
-                </ComboBox.Background>
-                <ComboBoxItem Content="Stun" />
-                <ComboBoxItem Content="Root" />
-                <ComboBoxItem Content="Invincible" />
-                <ComboBoxItem Content="Absorb" />
-                <ComboBoxItem Content="Silence" />
-                <ComboBoxItem Content="Disarm" />
-                <ComboBoxItem Content="Curse" />
-                <ComboBoxItem Content="Fire" />
-                <ComboBoxItem Content="Speed" />
-                <ComboBoxItem Content="Slowness" />
-                <ComboBoxItem Content="Haste" />
-                <ComboBoxItem Content="Fatigue" />
-                <ComboBoxItem Content="Strength" />
-                <ComboBoxItem Content="Jump" />
-                <ComboBoxItem Content="Nausea" />
-                <ComboBoxItem Content="Regeneration" />
-                <ComboBoxItem Content="Resistance" />
-                <ComboBoxItem Content="Fire Resistance" />
-                <ComboBoxItem Content="Water Breathing" />
-                <ComboBoxItem Content="Invisibility" />
-                <ComboBoxItem Content="Blindness" />
-                <ComboBoxItem Content="Night Vision" />
-                <ComboBoxItem Content="Hunger" />
-                <ComboBoxItem Content="Weakness" />
-                <ComboBoxItem Content="Poison" />
-                <ComboBoxItem Content="Wither" />
-                <ComboBoxItem Content="Health" />
-                <ComboBoxItem Content="Absorption" />
-                <ComboBoxItem Content="Saturation" />
-                <ComboBoxItem Content="Potion" />
-                <ComboBoxItem Content="Status" />
-            </ComboBox>
-            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" Margin="112,190,6,0" Name="condition3" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" IsEnabled="False">
-                <ComboBox.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0" />
-                        <GradientStop Color="#FF3A3A3A" Offset="1" />
-                    </LinearGradientBrush>
-                </ComboBox.Background>
-                <ComboBoxItem Content="Stun" />
-                <ComboBoxItem Content="Root" />
-                <ComboBoxItem Content="Invincible" />
-                <ComboBoxItem Content="Absorb" />
-                <ComboBoxItem Content="Silence" />
-                <ComboBoxItem Content="Disarm" />
-                <ComboBoxItem Content="Curse" />
-                <ComboBoxItem Content="Fire" />
-                <ComboBoxItem Content="Speed" />
-                <ComboBoxItem Content="Slowness" />
-                <ComboBoxItem Content="Haste" />
-                <ComboBoxItem Content="Fatigue" />
-                <ComboBoxItem Content="Strength" />
-                <ComboBoxItem Content="Jump" />
-                <ComboBoxItem Content="Nausea" />
-                <ComboBoxItem Content="Regeneration" />
-                <ComboBoxItem Content="Resistance" />
-                <ComboBoxItem Content="Fire Resistance" />
-                <ComboBoxItem Content="Water Breathing" />
-                <ComboBoxItem Content="Invisibility" />
-                <ComboBoxItem Content="Blindness" />
-                <ComboBoxItem Content="Night Vision" />
-                <ComboBoxItem Content="Hunger" />
-                <ComboBoxItem Content="Weakness" />
-                <ComboBoxItem Content="Poison" />
-                <ComboBoxItem Content="Wither" />
-                <ComboBoxItem Content="Health" />
-                <ComboBoxItem Content="Absorption" />
-                <ComboBoxItem Content="Saturation" />
-                <ComboBoxItem Content="Potion" />
-                <ComboBoxItem Content="Status" />
-            </ComboBox>
             <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,190,401,0" Name="operator2" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="100" IsEnabled="False" SelectionChanged="UpdateEnabled">
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -187,6 +148,162 @@
                 <ComboBoxItem Content="NOR" />
                 <ComboBoxItem Content="XOR" />
                 <ComboBoxItem Content="XNOR" />
+            </ComboBox>
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" Margin="113,160,6,0" Name="condition2" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" IsEnabled="False">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="Stun" />
+                <ComboBoxItem Content="Root" />
+                <ComboBoxItem Content="Invincible" />
+                <ComboBoxItem Content="Absorb" />
+                <ComboBoxItem Content="Silence" />
+                <ComboBoxItem Content="Disarm" />
+                <ComboBoxItem Content="Curse" />
+                <ComboBoxItem Content="Fire" />
+                <ComboBoxItem Content="Speed" />
+                <ComboBoxItem Content="Slowness" />
+                <ComboBoxItem Content="Haste" />
+                <ComboBoxItem Content="Fatigue" />
+                <ComboBoxItem Content="Strength" />
+                <ComboBoxItem Content="Jump" />
+                <ComboBoxItem Content="Nausea" />
+                <ComboBoxItem Content="Regeneration" />
+                <ComboBoxItem Content="Resistance" />
+                <ComboBoxItem Content="Fire Resistance" />
+                <ComboBoxItem Content="Water Breathing" />
+                <ComboBoxItem Content="Invisibility" />
+                <ComboBoxItem Content="Blindness" />
+                <ComboBoxItem Content="Night Vision" />
+                <ComboBoxItem Content="Hunger" />
+                <ComboBoxItem Content="Weakness" />
+                <ComboBoxItem Content="Poison" />
+                <ComboBoxItem Content="Wither" />
+                <ComboBoxItem Content="Health" />
+                <ComboBoxItem Content="Absorption" />
+                <ComboBoxItem Content="Saturation" />
+                <ComboBoxItem Content="Potion" />
+                <ComboBoxItem Content="Status" />
+                <ComboBoxItem Content="Beach Biome" />
+                <ComboBoxItem Content="Desert Biome" />
+                <ComboBoxItem Content="Desert Hills Biome" />
+                <ComboBoxItem Content="Extreme Hills Biome" />
+                <ComboBoxItem Content="Forest Biome" />
+                <ComboBoxItem Content="Forest Hills Biome" />
+                <ComboBoxItem Content="Frozen Ocean Biome" />
+                <ComboBoxItem Content="Frozen River Biome" />
+                <ComboBoxItem Content="Hell Biome" />
+                <ComboBoxItem Content="Ice Mountains Biome" />
+                <ComboBoxItem Content="Ice Plains Biome" />
+                <ComboBoxItem Content="Jungle Biome" />
+                <ComboBoxItem Content="Jungle Hills Biome" />
+                <ComboBoxItem Content="Mushroom Island Biome" />
+                <ComboBoxItem Content="Mushroom Shore Biome" />
+                <ComboBoxItem Content="Ocean Biome" />
+                <ComboBoxItem Content="Plains Biome" />
+                <ComboBoxItem Content="River Biome" />
+                <ComboBoxItem Content="Sky Biome" />
+                <ComboBoxItem Content="Small Mountains Biome" />
+                <ComboBoxItem Content="Swampland Biome" />
+                <ComboBoxItem Content="Taiga Biome" />
+                <ComboBoxItem Content="Taiga Hills Biome" />
+                <ComboBoxItem Content="Daytime" />
+                <ComboBoxItem Content="Nighttime" />
+                <ComboBoxItem Content="In Water" />
+                <ComboBoxItem Content="Out of Water" />
+                <ComboBoxItem Content="Using Axe" />
+                <ComboBoxItem Content="Using Hoe" />
+                <ComboBoxItem Content="Using Pickaxe" />
+                <ComboBoxItem Content="Using Shovel" />
+                <ComboBoxItem Content="Using Sword" />
+                <ComboBoxItem Content="Using Wood Tool" />
+                <ComboBoxItem Content="Using Stone Tool" />
+                <ComboBoxItem Content="Using Iron Tool" />
+                <ComboBoxItem Content="Using Gold Tool" />
+                <ComboBoxItem Content="Using Diamond Tool" />
+                <ComboBoxItem Content="Target Facing Towards" />
+                <ComboBoxItem Content="Target Facing Away" />
+            </ComboBox>
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" Margin="113,190,6,0" Name="condition3" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" IsEnabled="False">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="Stun" />
+                <ComboBoxItem Content="Root" />
+                <ComboBoxItem Content="Invincible" />
+                <ComboBoxItem Content="Absorb" />
+                <ComboBoxItem Content="Silence" />
+                <ComboBoxItem Content="Disarm" />
+                <ComboBoxItem Content="Curse" />
+                <ComboBoxItem Content="Fire" />
+                <ComboBoxItem Content="Speed" />
+                <ComboBoxItem Content="Slowness" />
+                <ComboBoxItem Content="Haste" />
+                <ComboBoxItem Content="Fatigue" />
+                <ComboBoxItem Content="Strength" />
+                <ComboBoxItem Content="Jump" />
+                <ComboBoxItem Content="Nausea" />
+                <ComboBoxItem Content="Regeneration" />
+                <ComboBoxItem Content="Resistance" />
+                <ComboBoxItem Content="Fire Resistance" />
+                <ComboBoxItem Content="Water Breathing" />
+                <ComboBoxItem Content="Invisibility" />
+                <ComboBoxItem Content="Blindness" />
+                <ComboBoxItem Content="Night Vision" />
+                <ComboBoxItem Content="Hunger" />
+                <ComboBoxItem Content="Weakness" />
+                <ComboBoxItem Content="Poison" />
+                <ComboBoxItem Content="Wither" />
+                <ComboBoxItem Content="Health" />
+                <ComboBoxItem Content="Absorption" />
+                <ComboBoxItem Content="Saturation" />
+                <ComboBoxItem Content="Potion" />
+                <ComboBoxItem Content="Status" />
+                <ComboBoxItem Content="Beach Biome" />
+                <ComboBoxItem Content="Desert Biome" />
+                <ComboBoxItem Content="Desert Hills Biome" />
+                <ComboBoxItem Content="Extreme Hills Biome" />
+                <ComboBoxItem Content="Forest Biome" />
+                <ComboBoxItem Content="Forest Hills Biome" />
+                <ComboBoxItem Content="Frozen Ocean Biome" />
+                <ComboBoxItem Content="Frozen River Biome" />
+                <ComboBoxItem Content="Hell Biome" />
+                <ComboBoxItem Content="Ice Mountains Biome" />
+                <ComboBoxItem Content="Ice Plains Biome" />
+                <ComboBoxItem Content="Jungle Biome" />
+                <ComboBoxItem Content="Jungle Hills Biome" />
+                <ComboBoxItem Content="Mushroom Island Biome" />
+                <ComboBoxItem Content="Mushroom Shore Biome" />
+                <ComboBoxItem Content="Ocean Biome" />
+                <ComboBoxItem Content="Plains Biome" />
+                <ComboBoxItem Content="River Biome" />
+                <ComboBoxItem Content="Sky Biome" />
+                <ComboBoxItem Content="Small Mountains Biome" />
+                <ComboBoxItem Content="Swampland Biome" />
+                <ComboBoxItem Content="Taiga Biome" />
+                <ComboBoxItem Content="Taiga Hills Biome" />
+                <ComboBoxItem Content="Daytime" />
+                <ComboBoxItem Content="Nighttime" />
+                <ComboBoxItem Content="In Water" />
+                <ComboBoxItem Content="Out of Water" />
+                <ComboBoxItem Content="Using Axe" />
+                <ComboBoxItem Content="Using Hoe" />
+                <ComboBoxItem Content="Using Pickaxe" />
+                <ComboBoxItem Content="Using Shovel" />
+                <ComboBoxItem Content="Using Sword" />
+                <ComboBoxItem Content="Using Wood Tool" />
+                <ComboBoxItem Content="Using Stone Tool" />
+                <ComboBoxItem Content="Using Iron Tool" />
+                <ComboBoxItem Content="Using Gold Tool" />
+                <ComboBoxItem Content="Using Diamond Tool" />
+                <ComboBoxItem Content="Target Facing Towards" />
+                <ComboBoxItem Content="Target Facing Away" />
             </ComboBox>
         </Grid>
     </Grid>

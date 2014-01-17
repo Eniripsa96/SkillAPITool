@@ -17,11 +17,14 @@ namespace SkillAPITool {
     /// </summary>
     public partial class PotionEffect : IEffect {
 
+        private ComboBox[] typeBoxes;
+
         /// <summary>
         /// Constructor
         /// </summary>
         public PotionEffect() {
             InitializeComponent();
+            typeBoxes = new ComboBox[] { typeBox1, typeBox2, typeBox3, typeBox4, typeBox5, typeBox6 };
             tierBaseBox.TextChanged += Filter.FilterInt;
             tierBonusBox.TextChanged += Filter.FilterInt;
             durationBaseBox.TextChanged += Filter.FilterDouble;
@@ -106,9 +109,15 @@ namespace SkillAPITool {
         /// Gets the values for the skill
         /// </summary>
         /// <returns>value list</returns>
-        public void GetValues(List<Value> list) { 
-            int type = 1 + typeBox.SelectedIndex;
-            if (type > 5) type += 2;
+        public void GetValues(List<Value> list) {
+            int type = 1;
+            int m = 1;
+            for (int i = 0; i < typeBoxes.Length; i++) {
+                int value = typeBoxes[i].SelectedIndex;
+                if (value > 5 || (value == 5 && i == 0)) value += 2;
+                type += m * value;
+                if (value > 0 || i == 0) m *= 32;
+            }
             list.Add(new Value("Type", type));
         }
 
@@ -133,14 +142,32 @@ namespace SkillAPITool {
         /// <param name="value">value</param>
         public void ApplyValue(Value value) {
             if (value.Key.Equals("Type")) {
-                int index = value.Number;
-                if (index <= 0 || index == 6 || index == 7 || index > typeBox.Items.Count + 2)
-                    return;
-                index--;
-                if (index > 4) index -= 2;
-                typeBox.SelectedIndex = index;
+                int num = value.Number;
+                int box = 0;
+                while (num > 0) {
+                    int index = (num - 1) % 32;
+                    num /= 32;
+                    if (index > 5) index -= 2;
+                    if (box > 0) index++;
+                    if (typeBoxes[box].Items.Count > index) {
+                        typeBoxes[box].SelectedIndex = index;
+                        box++;
+                    }
+                }
             }
         }
+
+        /// <summary>
+        /// Gets the strings for the skill
+        /// </summary>
+        /// <param name="list">list to add to</param>
+        public void GetStrings(List<StringValue> list) { }
+
+        /// <summary>
+        /// Applies a loaded string
+        /// </summary>
+        /// <param name="value">value to apply</param>
+        public void ApplyString(StringValue value) { }
 
         /// <summary>
         /// Sets visibility when target changes

@@ -32,14 +32,20 @@ namespace SkillAPITool {
         /// <summary>
         /// Gets the attributes for the skill
         /// </summary>
-        /// <returns>attribute list</returns>
+        /// <param name="list">list to add to</param>
         void GetAttributes(List<Attribute> list);
 
         /// <summary>
         /// Gets the values for the skill
         /// </summary>
-        /// <returns></returns>
+        /// <param name="list">list to add to</param>
         void GetValues(List<Value> list);
+
+        /// <summary>
+        /// Gets the strings for the skill
+        /// </summary>
+        /// <param name="list">list to add to</param>
+        void GetStrings(List<StringValue> list);
 
         /// <summary>
         /// Applies a loaded attribute
@@ -52,6 +58,12 @@ namespace SkillAPITool {
         /// </summary>
         /// <param name="value">value</param>
         void ApplyValue(Value value);
+
+        /// <summary>
+        /// Applies a loaded string
+        /// </summary>
+        /// <param name="value">value</param>
+        void ApplyString(StringValue value);
 
         /// <summary>
         /// Removes the linear target option

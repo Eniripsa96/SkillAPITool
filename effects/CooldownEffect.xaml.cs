@@ -15,18 +15,18 @@ namespace SkillAPITool {
     /// <summary>
     /// Damage effect
     /// </summary>
-    public partial class StatusEffect : IEffect {
+    public partial class CooldownEffect : IEffect {
 
-        private ComboBox[] typeBoxes;
+        private static readonly char[] SPLITTER = new char[] { ';' };
+
+        private List<CooldownOption> options = new List<CooldownOption>();
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public StatusEffect() {
+        public CooldownEffect() {
             InitializeComponent();
-            typeBoxes = new ComboBox[] { typeBox1, typeBox2, typeBox3, typeBox4, typeBox5, typeBox6 };
-            lengthBaseBox.TextChanged += Filter.FilterDouble;
-            lengthBonusBox.TextChanged += Filter.FilterDouble;
+            AddOption();
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <param name="target">target</param>
         /// <param name="group">group</param>
-        public StatusEffect(string target, string group) 
+        public CooldownEffect(string target, string group) 
             : this() 
         {
             foreach (object obj in targetBox.Items) {
@@ -50,6 +50,15 @@ namespace SkillAPITool {
                     groupBox.SelectedItem = obj;
                     break;
                 }
+            }
+        }
+
+        private void Update() {
+            Height = 300 + 30 * options.Count;
+            int y = 175;
+            foreach (CooldownOption option in options) {
+                option.Margin = new Thickness(0, y, 0, 0);
+                y += 30;
             }
         }
 
@@ -75,7 +84,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>key</returns>
         public string GetKey() {
-            return "Status";
+            return "Cooldown";
         }
 
         /// <summary>
@@ -98,67 +107,60 @@ namespace SkillAPITool {
         /// Gets the attributes for the skill
         /// </summary>
         /// <returns>attribute list</returns>
-        public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Length", double.Parse(lengthBaseBox.Text), double.Parse(lengthBonusBox.Text)));
-        }
+        public void GetAttributes(List<Attribute> list) { }
 
         /// <summary>
         /// Gets the values for the skill
         /// </summary>
         /// <returns>value list</returns>
-        public void GetValues(List<Value> list) {
-            int value = 0;
-            int m = 1;
-            for (int i = 0; i < typeBoxes.Length; i++) {
-                int num = typeBoxes[i].SelectedIndex;
-                value += m * num;
-                if (num > 0 || i == 0) m *= 32;
-            }
-            list.Add(new Value("Status", value));
-        }
+        public void GetValues(List<Value> list) { }
 
         /// <summary>
         /// Applies a loaded attribute
         /// </summary>
         /// <param name="attribute">attribute</param>
-        public void ApplyAttribute(Attribute attribute) {
-            if (attribute.Key.EndsWith("Length")) {
-                lengthBaseBox.Text = attribute.Initial.ToString();
-                lengthBonusBox.Text = attribute.Scale.ToString();
-            }
-        }
+        public void ApplyAttribute(Attribute attribute) { }
 
         /// <summary>
         /// Applies a loaded value
         /// </summary>
         /// <param name="value">value</param>
-        public void ApplyValue(Value value) {
-            if (value.Key.Equals("Status")) {
-                int num = value.Number + 1;
-                int box = 0;
-                while (num > 0) {
-                    int index = (num - 1) % 32;
-                    num /= 32;
-                    if (box > 0) index++;
-                    if (typeBoxes[box].Items.Count > index) {
-                        typeBoxes[box].SelectedIndex = index;
-                        box++;
-                    }
-                }
-            }
-        }
+        public void ApplyValue(Value value) { }
 
         /// <summary>
         /// Gets the strings for the skill
         /// </summary>
         /// <param name="list">list to add to</param>
-        public void GetStrings(List<StringValue> list) { }
+        public void GetStrings(List<StringValue> list) {
+            string s = "";
+            bool first = true;
+            foreach (CooldownOption option in options) {
+                if (first) first = false;
+                else s += ";";
+                s += option.Skill + ";" + option.GetModification();
+            }
+            list.Add(new StringValue("Cooldowns", s));
+        }
 
         /// <summary>
         /// Applies a loaded string
         /// </summary>
         /// <param name="value">value to apply</param>
-        public void ApplyString(StringValue value) { }
+        public void ApplyString(StringValue value) {
+            if (value.Key.Equals("Cooldowns")) {
+                foreach (CooldownOption o in options) {
+                    mainGrid.Children.Remove(o);
+                }
+                options.Clear();
+                string[] pieces = value.String.Split(SPLITTER);
+                if (pieces == null) return;
+                for (int i = 0; i < pieces.Length / 2; i++) {
+                    CooldownOption option = AddOption();
+                    option.Skill = pieces[i * 2];
+                    option.SetModification(pieces[i * 2 + 1]);
+                }
+            }
+        }
 
         /// <summary>
         /// Sets visibility when target changes
@@ -176,6 +178,23 @@ namespace SkillAPITool {
         /// </summary>
         public void RemoveLinear() {
             targetBox.Items.RemoveAt(1);
+        }
+
+        private CooldownOption AddOption() {
+            CooldownOption option = new CooldownOption();
+            options.Add(option);
+            mainGrid.Children.Add(option);
+            Update();
+            return option;
+        }
+
+        /// <summary>
+        /// Adds a new option to the window
+        /// </summary>
+        /// <param name="sender">add button</param>
+        /// <param name="e">event details</param>
+        private void AddClicked(object sender, RoutedEventArgs e) {
+            AddOption();
         }
     }
 }

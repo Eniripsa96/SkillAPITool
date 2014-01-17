@@ -9,10 +9,14 @@ namespace SkillAPITool {
     /// </summary>
     public class Tree {
 
+        private static readonly char[] SPLITTER = new char[] { ',' };
+
         public List<String> skills = new List<string>();
         public string name;
         public string prefix;
         public string parent;
+        public string permissions = "";
+        public bool needsPermission = false;
         public bool inherit;
         public int maxLevel = 40;
         public int professLevel = 40;
@@ -103,6 +107,33 @@ namespace SkillAPITool {
                 sb.Append(interval);
                 sb.Append("\n");
             }
+
+            // Needs permission
+            sb.Append("  needs-permission: ");
+            sb.Append(needsPermission.ToString().ToLower());
+            sb.Append("\n");
+
+            // Permissions
+            string[] perms;
+            if (permissions.Contains(",")) {
+                perms = permissions.Split(SPLITTER);
+            }
+            else perms = new string[] { permissions };
+            bool first = true;
+            foreach (string perm in perms) {
+                string p = perm.Replace(" ", "").Replace(",", "");
+                if (p.Length > 0) {
+                    if (first) {
+                        first = false;
+                        sb.Append("  permissions:\n");
+                    }
+                    sb.Append("  - ");
+                    sb.Append(p);
+                    sb.Append("\n");
+                }
+            }
+            if (first) sb.Append("  permissions: []\n");
+
 
             // Skills
             if (skills.Count == 0) {

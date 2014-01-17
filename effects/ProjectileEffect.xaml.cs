@@ -142,6 +142,18 @@ namespace SkillAPITool {
         }
 
         /// <summary>
+        /// Gets the strings for the skill
+        /// </summary>
+        /// <param name="list">list to add to</param>
+        public void GetStrings(List<StringValue> list) { }
+
+        /// <summary>
+        /// Applies a loaded string
+        /// </summary>
+        /// <param name="value">value to apply</param>
+        public void ApplyString(StringValue value) { }
+
+        /// <summary>
         /// Removes the linear target option
         /// </summary>
         public void RemoveLinear() { }

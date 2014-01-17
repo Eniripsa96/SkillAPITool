@@ -57,9 +57,10 @@ namespace SkillAPITool {
             healthBonusBox.Text = tree.healthScale.ToString();
             manaBaseBox.Text = tree.manaBase.ToString();
             manaBonusBox.Text = tree.manaBonus.ToString();
+            permissionBox.Text = tree.permissions;
 
             // Profession options
-            foreach (Tree t in GetParent().trees) {
+            foreach (Tree t in MainPage.trees) {
                 if (t == tree) continue;
                 requiredClassBox.Items.Add(t.name);
             }
@@ -84,7 +85,7 @@ namespace SkillAPITool {
 
             // Skill options
             int y = 30;
-            foreach (Skill skill in GetParent().skills) {
+            foreach (Skill skill in MainPage.skills) {
                 SkillOption option = new SkillOption(tree, skill);
                 option.Margin = new Thickness(6, y, 6, 0);
                 skillGrid.Children.Add(option);
@@ -107,10 +108,11 @@ namespace SkillAPITool {
             tree.inherit = inheritBox.SelectedIndex == 0;
             tree.maxLevel = int.Parse(maxLevelBox.Text);
             tree.professLevel = int.Parse(professLevelBox.Text);
-            tree.healthBase = int.Parse(healthBaseBox.Text);
-            tree.healthScale = int.Parse(healthBonusBox.Text);
-            tree.manaBase = int.Parse(manaBaseBox.Text);
-            tree.manaBonus = int.Parse(manaBonusBox.Text);
+            tree.healthBase = double.Parse(healthBaseBox.Text);
+            tree.healthScale = double.Parse(healthBonusBox.Text);
+            tree.manaBase = double.Parse(manaBaseBox.Text);
+            tree.manaBonus = double.Parse(manaBonusBox.Text);
+            tree.permissions = permissionBox.Text;
 
             // Click combos
             if (clickBox.SelectedIndex == 0) {

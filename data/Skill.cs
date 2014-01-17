@@ -12,6 +12,7 @@ namespace SkillAPITool {
 
         private static readonly List<String> RANGED = new List<String>(new string[] { "Target", "Target Area", "Linear" });
         private static readonly List<String> RADIUSED = new List<String>(new string[] { "Area", "Target Area" });
+        private static readonly char[] SPLITTER = new char[] { ',' };
 
         public List<IEffect> active = new List<IEffect>();
         public List<IEffect> passive = new List<IEffect>();
@@ -24,6 +25,7 @@ namespace SkillAPITool {
         public Attribute range = new Attribute("Range", 8, 0);
         public Attribute radius = new Attribute("Radius", 5, 0);
         public Attribute period = new Attribute("Period", 3, 0);
+        public bool needsPermission = false;
         public string name;
         public string type = "Target";
         public string indicator = "Apple";
@@ -31,6 +33,7 @@ namespace SkillAPITool {
         public string description = "";
         public string message = "";
         public string skillReq = "";
+        public string permissions = "";
         public int maxLevel = 5;
         public int skillReqLevel = 1;
 
@@ -182,6 +185,11 @@ namespace SkillAPITool {
                 sb.Append(itemReq);
             }
 
+            // Needs permission
+            sb.Append("  needs-permission: ");
+            sb.Append(needsPermission.ToString().ToLower());
+            sb.Append("\n");
+
             // Description
             if (HasDescription) {
                 sb.Append("  description:\n");
@@ -200,6 +208,27 @@ namespace SkillAPITool {
                 sb.Append(message.Replace("'", "")); 
                 sb.Append("'\n");
             }
+
+            // Permissions
+            string[] perms;
+            if (permissions.Contains(",")) {
+                perms = permissions.Split(SPLITTER);
+            }
+            else perms = new string[] { permissions };
+            bool first = true;
+            foreach (string perm in perms) {
+                string p = perm.Replace(" ", "").Replace(",", "");
+                if (p.Length > 0) {
+                    if (first) {
+                        first = false;
+                        sb.Append("  permissions:\n");
+                    }
+                    sb.Append("  - ");
+                    sb.Append(p);
+                    sb.Append("\n");
+                }
+            }
+            if (first) sb.Append("  permissions: []\n");
 
             // Actives
             if (active.Count > 0) {
@@ -367,7 +396,7 @@ namespace SkillAPITool {
             }
 
             // Values
-            List<String> keys = new List<String>();
+            List<string> keys = new List<string>();
             List<Value> values = new List<Value>();
             bool valueBase = false;
             foreach (IEffect effect in this) {
@@ -390,6 +419,33 @@ namespace SkillAPITool {
 
                 values.Clear();
             }
+            if (!valueBase) sb.Append("  values: {}\n");
+
+            // Strings
+            keys.Clear();
+            List<StringValue> strings = new List<StringValue>();
+            valueBase = false;
+            foreach (IEffect effect in this) {
+                effect.GetStrings(strings);
+
+                foreach (StringValue value in strings) {
+                    if (!valueBase) {
+                        valueBase = true;
+                        sb.Append("  strings:\n");
+                    }
+                    if (keys.Contains(value.Key)) continue;
+                    else keys.Add(value.Key);
+
+                    sb.Append("    ");
+                    sb.Append(value.Key);
+                    sb.Append(": ");
+                    sb.Append(value.String);
+                    sb.Append("\n");
+                }
+
+                strings.Clear();
+            }
+            if (!valueBase) sb.Append("  strings: {}\n");
 
             data = sb.ToString();
         }

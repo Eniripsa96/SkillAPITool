@@ -26,7 +26,9 @@ namespace SkillAPITool {
         }
 
         private void Application_Exit(object sender, EventArgs e) {
-
+            if (Application.Current.HasElevatedPermissions) {
+                (this.RootVisual as MainPage).Save();
+            }
         }
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {

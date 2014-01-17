@@ -15,18 +15,13 @@ namespace SkillAPITool {
     /// <summary>
     /// Damage effect
     /// </summary>
-    public partial class StatusEffect : IEffect {
-
-        private ComboBox[] typeBoxes;
+    public partial class CommandEffect : IEffect {
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public StatusEffect() {
+        public CommandEffect() {
             InitializeComponent();
-            typeBoxes = new ComboBox[] { typeBox1, typeBox2, typeBox3, typeBox4, typeBox5, typeBox6 };
-            lengthBaseBox.TextChanged += Filter.FilterDouble;
-            lengthBonusBox.TextChanged += Filter.FilterDouble;
         }
 
         /// <summary>
@@ -34,7 +29,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <param name="target">target</param>
         /// <param name="group">group</param>
-        public StatusEffect(string target, string group) 
+        public CommandEffect(string target, string group) 
             : this() 
         {
             foreach (object obj in targetBox.Items) {
@@ -75,7 +70,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>key</returns>
         public string GetKey() {
-            return "Status";
+            return "Command";
         }
 
         /// <summary>
@@ -98,53 +93,29 @@ namespace SkillAPITool {
         /// Gets the attributes for the skill
         /// </summary>
         /// <returns>attribute list</returns>
-        public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Length", double.Parse(lengthBaseBox.Text), double.Parse(lengthBonusBox.Text)));
-        }
+        public void GetAttributes(List<Attribute> list) { }
 
         /// <summary>
         /// Gets the values for the skill
         /// </summary>
         /// <returns>value list</returns>
         public void GetValues(List<Value> list) {
-            int value = 0;
-            int m = 1;
-            for (int i = 0; i < typeBoxes.Length; i++) {
-                int num = typeBoxes[i].SelectedIndex;
-                value += m * num;
-                if (num > 0 || i == 0) m *= 32;
-            }
-            list.Add(new Value("Status", value));
+            list.Add(new Value("CommandType", typeBox.SelectedIndex));
         }
 
         /// <summary>
         /// Applies a loaded attribute
         /// </summary>
         /// <param name="attribute">attribute</param>
-        public void ApplyAttribute(Attribute attribute) {
-            if (attribute.Key.EndsWith("Length")) {
-                lengthBaseBox.Text = attribute.Initial.ToString();
-                lengthBonusBox.Text = attribute.Scale.ToString();
-            }
-        }
+        public void ApplyAttribute(Attribute attribute) { }
 
         /// <summary>
         /// Applies a loaded value
         /// </summary>
         /// <param name="value">value</param>
         public void ApplyValue(Value value) {
-            if (value.Key.Equals("Status")) {
-                int num = value.Number + 1;
-                int box = 0;
-                while (num > 0) {
-                    int index = (num - 1) % 32;
-                    num /= 32;
-                    if (box > 0) index++;
-                    if (typeBoxes[box].Items.Count > index) {
-                        typeBoxes[box].SelectedIndex = index;
-                        box++;
-                    }
-                }
+            if (value.Key.Equals("CommandType") && typeBox.Items.Count > value.Number && value.Number >= 0) {
+                typeBox.SelectedIndex = value.Number;
             }
         }
 
@@ -152,13 +123,21 @@ namespace SkillAPITool {
         /// Gets the strings for the skill
         /// </summary>
         /// <param name="list">list to add to</param>
-        public void GetStrings(List<StringValue> list) { }
+        public void GetStrings(List<StringValue> list) {
+            if (worldBox.Text.Length > 0) {
+                list.Add(new StringValue("Command", worldBox.Text));
+            }
+        }
 
         /// <summary>
         /// Applies a loaded string
         /// </summary>
         /// <param name="value">value to apply</param>
-        public void ApplyString(StringValue value) { }
+        public void ApplyString(StringValue value) {
+            if (value.Key.Equals("Command")) {
+                worldBox.Text = value.String;
+            }
+        }
 
         /// <summary>
         /// Sets visibility when target changes

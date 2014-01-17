@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="519" VerticalAlignment="Top" Height="239" Background="White">
+    d:DesignHeight="300" d:DesignWidth="519" VerticalAlignment="Top" Height="296" Background="White">
 
     <Grid Background="White">
         <Grid Background="Black" Margin="6">
@@ -38,12 +38,12 @@
             </ComboBox>
             <sdk:Label Content="Target Group" FontFamily="../Sertig.otf#Sertig" FontSize="20" Foreground="White" Height="23" Margin="6,68,160,0" Name="label2" Padding="3,0" VerticalAlignment="Top" FontWeight="Bold" />
             <sdk:Label Content="Status" FontFamily="../Mojave.ttf#Mojave" FontSize="20" FontWeight="Bold" Foreground="#FFFFAB3C" Height="27" Margin="6,6,160,0" Name="label6" Padding="3,0" VerticalAlignment="Top" />
-            <sdk:Label Content="Duration" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,128,162,0" Name="label7" Padding="3,0" VerticalAlignment="Top" />
-            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,128,106,0" Name="lengthBaseBox" Padding="2,0" Text="3" VerticalAlignment="Top" Width="105" FontFamily="../Sertig.otf#Sertig" />
-            <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,128,74,0" Name="label8" Padding="0" VerticalAlignment="Top" Width="26" />
-            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,128,18,0" Name="lengthBonusBox" Padding="2,0" Text="1" VerticalAlignment="Top" Width="50" FontFamily="../Sertig.otf#Sertig" />
-            <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,128,6,0" Name="label9" Padding="0" VerticalAlignment="Top" Width="16" />
-            <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Right" Margin="0,97,6,0" Name="typeBox" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="205" FontFamily="../Sertig.otf#Sertig">
+            <sdk:Label Content="Duration" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,98,162,0" Name="label7" Padding="3,0" VerticalAlignment="Top" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,98,106,0" Name="lengthBaseBox" Padding="2,0" Text="3" VerticalAlignment="Top" Width="105" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content="+ (" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,98,74,0" Name="label8" Padding="0" VerticalAlignment="Top" Width="26" />
+            <TextBox FontSize="18" FontWeight="Normal" Height="23" HorizontalAlignment="Right" Margin="0,98,18,0" Name="lengthBonusBox" Padding="2,0" Text="1" VerticalAlignment="Top" Width="50" FontFamily="../Sertig.otf#Sertig" />
+            <sdk:Label Content=")" FontFamily="Sertig.otf#Sertig" FontSize="16" Foreground="White" Height="23" HorizontalAlignment="Right" Margin="0,98,6,0" Name="label9" Padding="0" VerticalAlignment="Top" Width="16" />
+            <ComboBox FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Left" Margin="6,160,0,0" Name="typeBox1" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="162" FontFamily="../Sertig.otf#Sertig">
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="0" />
@@ -57,8 +57,83 @@
                 <ComboBoxItem Content="Curse" />
                 <ComboBoxItem Content="Absorb" />
             </ComboBox>
-            <sdk:Label Content="Status Type" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,97,160,0" Name="label3" Padding="3,0" VerticalAlignment="Top" />
+            <sdk:Label Content="Statuses" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="White" Height="23" Margin="6,129,217,0" Name="label3" Padding="3,0" VerticalAlignment="Top" />
             <Button Background="White" BorderBrush="White" BorderThickness="1" Content="Remove" FontFamily="../Sertig.otf#Sertig" FontSize="20" FontWeight="Bold" Foreground="Red" Height="29" HorizontalAlignment="Right" Margin="0,0,6,6" Name="removeButton" VerticalAlignment="Bottom" Width="205" Click="Removed" />
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Left" Margin="176,160,0,0" Name="typeBox2" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="162">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Stun" />
+                <ComboBoxItem Content="Root" />
+                <ComboBoxItem Content="Silence" />
+                <ComboBoxItem Content="Disarm" />
+                <ComboBoxItem Content="Curse" />
+                <ComboBoxItem Content="Absorb" />
+            </ComboBox>
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" Margin="345,160,6,0" Name="typeBox3" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Stun" />
+                <ComboBoxItem Content="Root" />
+                <ComboBoxItem Content="Silence" />
+                <ComboBoxItem Content="Disarm" />
+                <ComboBoxItem Content="Curse" />
+                <ComboBoxItem Content="Absorb" />
+            </ComboBox>
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Left" Margin="176,190,0,0" Name="typeBox5" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="162">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Stun" />
+                <ComboBoxItem Content="Root" />
+                <ComboBoxItem Content="Silence" />
+                <ComboBoxItem Content="Disarm" />
+                <ComboBoxItem Content="Curse" />
+                <ComboBoxItem Content="Absorb" />
+            </ComboBox>
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" Margin="345,190,6,0" Name="typeBox6" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Stun" />
+                <ComboBoxItem Content="Root" />
+                <ComboBoxItem Content="Silence" />
+                <ComboBoxItem Content="Disarm" />
+                <ComboBoxItem Content="Curse" />
+                <ComboBoxItem Content="Absorb" />
+            </ComboBox>
+            <ComboBox FontFamily="../Sertig.otf#Sertig" FontSize="18" FontWeight="Bold" Foreground="Black" Height="23" HorizontalAlignment="Left" Margin="6,190,0,0" Name="typeBox4" Padding="6,0" SelectedIndex="0" VerticalAlignment="Top" Width="162">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0" />
+                        <GradientStop Color="#FF3A3A3A" Offset="1" />
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Stun" />
+                <ComboBoxItem Content="Root" />
+                <ComboBoxItem Content="Silence" />
+                <ComboBoxItem Content="Disarm" />
+                <ComboBoxItem Content="Curse" />
+                <ComboBoxItem Content="Absorb" />
+            </ComboBox>
         </Grid>
     </Grid>
 </UserControl>
