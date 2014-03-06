@@ -119,8 +119,8 @@ namespace SkillAPITool {
         /// <param name="attribute">attribute</param>
         public void ApplyAttribute(Attribute attribute) {
             if (attribute.Key.EndsWith("DOT Damage")) {
-                damageBaseBox.Text = attribute.Initial.ToString();
-                damageBonusBox.Text = attribute.Scale.ToString();
+                damageBaseBox.Text = ((int)attribute.Initial).ToString();
+                damageBonusBox.Text = ((int)attribute.Scale).ToString();
             }
             else if (attribute.Key.EndsWith("DOT Duration")) {
                 durationBaseBox.Text = attribute.Initial.ToString();

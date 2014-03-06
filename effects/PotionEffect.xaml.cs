@@ -127,8 +127,8 @@ namespace SkillAPITool {
         /// <param name="attribute">attribute</param>
         public void ApplyAttribute(Attribute attribute) {
             if (attribute.Key.EndsWith("Tier")) {
-                tierBaseBox.Text = attribute.Initial.ToString();
-                tierBonusBox.Text = attribute.Scale.ToString();
+                tierBaseBox.Text = ((int)attribute.Initial).ToString();
+                tierBonusBox.Text = ((int)attribute.Scale).ToString();
             }
             else if (attribute.Key.EndsWith("Duration")) {
                 durationBaseBox.Text = attribute.Initial.ToString();

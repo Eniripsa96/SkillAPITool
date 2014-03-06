@@ -23,6 +23,16 @@ namespace SkillAPITool {
         private static readonly char[] LIST_SPLIT = new char[] { ',' };
 
         /// <summary>
+        /// Filters strings for YAML compatibility
+        /// </summary>
+        /// <param name="sender">text box</param>
+        /// <param name="e">event details</param>
+        public static void FilterString(object sender, RoutedEventArgs e) {
+            TextBox box = (TextBox)sender;
+            box.Text = box.Text.Replace("'", "");
+        }
+
+        /// <summary>
         /// Filters a text box to only include integers
         /// </summary>
         /// <param name="sender">text box</param>

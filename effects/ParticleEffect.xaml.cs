@@ -230,10 +230,13 @@ namespace SkillAPITool {
             }
             else if (value.Key.Equals("Particle Data")) {
                 int num = value.Number;
-                if (num > 13) num--;
-                if (num > 11) num--;
-                if (num > 7) num--;
-                num--;
+
+                if (typeBox.SelectedIndex == 3) {
+                    if (num > 13) num--;
+                    if (num > 11) num--;
+                    if (num > 7) num--;
+                    num--;
+                }
 
                 if (num >= 0 && num < dataBox.Items.Count) {
                     dataBox.SelectedIndex = num;

@@ -15,20 +15,14 @@ namespace SkillAPITool {
     /// <summary>
     /// Damage effect
     /// </summary>
-    public partial class ProjectileEffect : IEffect, IEmbedable {
+    public partial class ValueConditionEffect : IEffect, IEmbedable {
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ProjectileEffect() {
+        public ValueConditionEffect() {
             InitializeComponent();
-            speedBaseBox.TextChanged += Filter.FilterDouble;
-            speedBonusBox.TextChanged += Filter.FilterDouble;
-            angleBaseBox.TextChanged += Filter.FilterInt;
-            angleBonusBox.TextChanged += Filter.FilterInt;
-            amountBaseBox.TextChanged += Filter.FilterInt;
-            amountBonusBox.TextChanged += Filter.FilterInt;
-            usedBox.TextChanged += Filter.FilterInt;
+            valueBox.TextChanged += Filter.FilterInt;
         }
 
         /// <summary>
@@ -36,8 +30,24 @@ namespace SkillAPITool {
         /// </summary>
         /// <param name="target">target</param>
         /// <param name="group">group</param>
-        public ProjectileEffect(string target, string group)
-            : this() { }
+        public ValueConditionEffect(string target, string group) 
+            : this() 
+        {
+            foreach (object obj in targetBox.Items) {
+                string s = (obj as ComboBoxItem).Content.ToString();
+                if (s.ToLower().Equals(target.ToLower())) {
+                    targetBox.SelectedItem = obj;
+                    break;
+                }
+            }
+            foreach (object obj in groupBox.Items) {
+                string s = (obj as ComboBoxItem).Content.ToString();
+                if (s.ToLower().Equals(group.ToLower())) {
+                    groupBox.SelectedItem = obj;
+                    break;
+                }
+            }
+        }
 
         /// <summary>
         /// Removes the effect
@@ -61,7 +71,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>key</returns>
         public string GetKey() {
-            return "Projectile";
+            return "ValueCondition";
         }
 
         /// <summary>
@@ -69,7 +79,7 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>target type key</returns>
         public string GetTarget() {
-            return "Self";
+            return (targetBox.SelectedItem as ComboBoxItem).Content.ToString();
         }
 
         /// <summary>
@@ -77,67 +87,44 @@ namespace SkillAPITool {
         /// </summary>
         /// <returns>group name</returns>
         public string GetGroup() {
-            return "Ally";
+            return (groupBox.SelectedItem as ComboBoxItem).Content.ToString();
         }
 
         /// <summary>
         /// Gets the attributes for the skill
         /// </summary>
         /// <returns>attribute list</returns>
-        public void GetAttributes(List<Attribute> list) {
-            list.Add(new Attribute("Speed", double.Parse(speedBaseBox.Text), double.Parse(speedBonusBox.Text)));
-            list.Add(new Attribute("Angle", int.Parse(angleBaseBox.Text), int.Parse(angleBonusBox.Text)));
-            list.Add(new Attribute("Quantity", int.Parse(amountBaseBox.Text), int.Parse(amountBonusBox.Text)));
-        }
+        public void GetAttributes(List<Attribute> list) { }
 
         /// <summary>
         /// Gets the values for the skill
         /// </summary>
         /// <returns>value list</returns>
-        public void GetValues(List<Value> list) {
-            if (typeBox.SelectedIndex != typeBox.Items.Count - 1) list.Add(new Value("Projectile", typeBox.SelectedIndex));
-            else list.Add(new Value("Projectile", typeBox.Items.Count));
-            list.Add(new Value("Spread", spreadBox.SelectedIndex));
-            list.Add(new Value("Use Arrow", int.Parse(usedBox.Text)));
+        public void GetValues(List<Value> list) { 
+            list.Add(new Value("ConditionKey", conditionBox.SelectedIndex));
+            list.Add(new Value("ConditionType", comparisonBox.SelectedIndex));
+            list.Add(new Value("ConditionValue", int.Parse(valueBox.Text)));
         }
 
         /// <summary>
         /// Applies a loaded attribute
         /// </summary>
         /// <param name="attribute">attribute</param>
-        public void ApplyAttribute(Attribute attribute) {
-            if (attribute.Key.EndsWith("Speed")) {
-                speedBaseBox.Text = attribute.Initial.ToString();
-                speedBonusBox.Text = attribute.Scale.ToString();
-            }
-            else if (attribute.Key.EndsWith("Angle")) {
-                angleBaseBox.Text = ((int)attribute.Initial).ToString();
-                angleBonusBox.Text = ((int)attribute.Scale).ToString();
-            }
-            else if (attribute.Key.EndsWith("Quantity")) {
-                amountBaseBox.Text = ((int)attribute.Initial).ToString();
-                amountBonusBox.Text = ((int)attribute.Scale).ToString();
-            }
-        }
+        public void ApplyAttribute(Attribute attribute) { }
 
         /// <summary>
         /// Applies a loaded value
         /// </summary>
         /// <param name="value">value</param>
         public void ApplyValue(Value value) {
-            if (value.Key.Equals("Projectile")) {
-                if (typeBox.Items.Count > value.Number - 1 && value.Number >= 0) {
-                    if (value.Number == typeBox.Items.Count) typeBox.SelectedIndex = typeBox.Items.Count - 1;
-                    else typeBox.SelectedIndex = value.Number;
-                }
-            } 
-            if (value.Key.Equals("Spread")) {
-                if (typeBox.Items.Count > value.Number && value.Number >= 0) {
-                    spreadBox.SelectedIndex = value.Number;
-                }
+            if (value.Key.Equals("ConditionKey")) {
+                conditionBox.SelectedIndex = value.Number;
             }
-            if (value.Key.Equals("Use Arrow")) {
-                usedBox.Text = value.Number.ToString();
+            else if (value.Key.Equals("ConditionType")) {
+                comparisonBox.SelectedIndex = value.Number;
+            }
+            else if (value.Key.Equals("ConditionValue")) {
+                valueBox.Text = value.Number.ToString();
             }
         }
 
@@ -154,8 +141,21 @@ namespace SkillAPITool {
         public void ApplyString(StringValue value) { }
 
         /// <summary>
+        /// Sets visibility when target changes
+        /// </summary>
+        /// <param name="sender">target box</param>
+        /// <param name="e">event details</param>
+        private void TargetChanged(object sender, SelectionChangedEventArgs e) {
+            if (Parent != null) {
+                GetParent().SetVisibility();
+            }
+        }
+
+        /// <summary>
         /// Removes the linear target option
         /// </summary>
-        public void RemoveLinear() { }
+        public void RemoveLinear() {
+            targetBox.Items.RemoveAt(1);
+        }
     }
 }

@@ -22,6 +22,8 @@ namespace SkillAPITool {
         /// </summary>
         public CommandEffect() {
             InitializeComponent();
+
+            worldBox.TextChanged += Filter.FilterString;
         }
 
         /// <summary>

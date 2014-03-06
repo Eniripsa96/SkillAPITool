@@ -29,8 +29,8 @@ namespace SkillAPITool {
             DEFAULT_CLASS_NAME = "Class",
             SKILL_FILE = "skills.yml",
             CLASS_FILE = "classes.yml",
-            SKILL_FILTER = "Skill File | *.yml",
-            CLASS_FILTER = "Class File | *.yml";
+            SKILL_FILTER = "Skill File (skills.yml) | *.yml",
+            CLASS_FILTER = "Class File (classes.yml) | *.yml";
 
         public static readonly List<Skill> skills = new List<Skill>();
         public static readonly List<Tree> trees = new List<Tree>();
@@ -80,6 +80,7 @@ namespace SkillAPITool {
             effectDictionary.Add("healthdamage", "HealthDamage");
             effectDictionary.Add("hot", "HealOverTime");
             effectDictionary.Add("launch", "Launch");
+            effectDictionary.Add("lightning", "Lightning");
             effectDictionary.Add("mana", "Mana");
             effectDictionary.Add("manadamage", "ManaDamage");
             effectDictionary.Add("manapercent", "ManaPercent");
@@ -94,7 +95,8 @@ namespace SkillAPITool {
             effectDictionary.Add("taunt", "Taunt");
             effectDictionary.Add("teleport", "Teleport");
             effectDictionary.Add("teleportlocation", "TeleportLocation");
-            effectDictionary.Add("teleportTarget", "TeleportTarget");
+            effectDictionary.Add("teleporttarget", "TeleportTarget");
+            effectDictionary.Add("valuecondition", "ValueCondition");
 
             // Initial File I/O
             if (Application.Current.HasElevatedPermissions && !Directory.Exists(ROOT)) {
@@ -365,7 +367,17 @@ namespace SkillAPITool {
                 else if (data.StartsWith("  permissions:")) d = !(r = true);
                 else if (data.StartsWith("  description:")) d = !(r = false);
                 else if (data.StartsWith("  type: ")) skill.type = data.Substring(8);
-                else if (data.StartsWith("  indicator: ")) skill.indicator = data.Substring(13);
+                else if (data.StartsWith("  indicator: ")) {
+                    string indicator = data.Substring(13);
+                    if (indicator.Contains(',')) {
+                        string[] pieces = indicator.Split(new char[] { ',' });
+                        skill.indicator = pieces[0];
+                        try {
+                            skill.indicatorData = int.Parse(pieces[1]);
+                        }
+                        catch (Exception) { }
+                    }
+                }
                 else if (data.StartsWith("  item-req: ")) skill.itemReq = data.Substring(12);
                 else if (data.StartsWith("  skill-req:")) skill.skillReq = data.Substring(13);
                 else if (data.StartsWith("  skill-req-level: ")) skill.skillReqLevel = int.Parse(data.Substring(18));

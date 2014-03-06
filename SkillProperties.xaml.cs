@@ -27,7 +27,12 @@ namespace SkillAPITool {
         public SkillProperties(MainPage parent, Skill skill) {
             InitializeComponent();
 
+            nameBox.TextChanged += Filter.FilterString;
+            descriptionBox.TextChanged += Filter.FilterString;
+            messageBox.TextChanged += Filter.FilterString;
+            permissionBox.TextChanged += Filter.FilterString;
             indicatorBox.TextChanged += Filter.FilterMaterial;
+            indicatorBox.TextChanged += UpdateDataBox;
             maxLevelBox.TextChanged += Filter.FilterInt;
             itemReqBox.TextChanged += Filter.FilterMaterials;
             requiredLevelBox.TextChanged += Filter.FilterInt;
@@ -63,6 +68,9 @@ namespace SkillAPITool {
             maxLevelBox.Text = skill.maxLevel.ToString();
             requiredLevelBox.Text = skill.skillReqLevel.ToString();
             indicatorBox.Text = skill.indicator;
+            itemReqBox.Text = skill.itemReq;
+            UpdateDataBox(null, null);
+            ApplyData(skill.indicatorData);
             levelBaseBox.Text = skill.level.Initial.ToString();
             levelBonusBox.Text = skill.level.Scale.ToString();
             costBaseBox.Text = skill.cost.Initial.ToString();
@@ -75,6 +83,8 @@ namespace SkillAPITool {
             rangeBonusBox.Text = skill.range.Scale.ToString();
             radiusBaseBox.Text = skill.radius.Initial.ToString();
             radiusBonusBox.Text = skill.radius.Scale.ToString();
+            periodBaseBox.Text = skill.period.Initial.ToString();
+            periodBonusBox.Text = skill.period.Scale.ToString();
             permissionBox.Text = skill.permissions;
             needPermBox.SelectedIndex = skill.needsPermission ? 1 : 0;
 
@@ -278,6 +288,7 @@ namespace SkillAPITool {
         /// </summary>
         public void Update() {
             if (MaterialDictionary.IsValid(indicatorBox.Text)) skill.indicator = indicatorBox.Text;
+            skill.indicatorData = GetData();
             skill.maxLevel = int.Parse(maxLevelBox.Text);
             if (nameBox.Text.Length > 0 && !GetParent().skillList.Items.Contains(nameBox.Text)) skill.name = nameBox.Text;
             if (requiredSkillBox.SelectedIndex == 0) skill.skillReq = "";
@@ -286,6 +297,7 @@ namespace SkillAPITool {
             skill.type = (typeBox.SelectedItem as ComboBoxItem).Content.ToString();
             skill.description = descriptionBox.Text;
             skill.message = messageBox.Text;
+            skill.itemReq = itemReqBox.Text;
             skill.level.Initial = int.Parse(levelBaseBox.Text);
             skill.level.Scale = int.Parse(levelBonusBox.Text);
             skill.cost.Initial = int.Parse(costBaseBox.Text);
@@ -378,6 +390,233 @@ namespace SkillAPITool {
         /// <returns></returns>
         private MainPage GetParent() {
             return parent;
+        }
+
+        /// <summary>
+        /// Updates the data box when the indicator changes
+        /// </summary>
+        private void UpdateDataBox(object sender, EventArgs e) {
+            string indicator = indicatorBox.Text.ToUpper().Replace(" ", "_");
+            dataBox.Items.Clear();
+            if (indicator.Equals("WOOD") 
+                || indicator.Equals("SAPLING") 
+                || indicator.Equals("LOG") 
+                || indicator.Equals("LEAVES") 
+                || indicator.Equals("WOOD_STEP") 
+                || indicator.Equals("WOOD_DOUBLE_STEP")) {
+                dataBox.Items.Add("Oak");
+                dataBox.Items.Add("Spruce");
+                dataBox.Items.Add("Birch");
+                dataBox.Items.Add("Jungle");
+            }
+            else if (indicator.Equals("SANDSTONE")) {
+                dataBox.Items.Add("Normal");
+                dataBox.Items.Add("Chiseled");
+                dataBox.Items.Add("Smooth");
+            }
+            else if (indicator.Equals("DEAD_BUSH")) {
+                dataBox.Items.Add("Dead Shrub");
+                dataBox.Items.Add("Grass");
+                dataBox.Items.Add("Fern");
+            }
+            else if (indicator.Equals("WOOL") || indicator.Equals("STAINED_CLAY") || indicator.Equals("CARPET")) {
+                dataBox.Items.Add("White");
+                dataBox.Items.Add("Orange");
+                dataBox.Items.Add("Magenta");
+                dataBox.Items.Add("Light Blue");
+                dataBox.Items.Add("Yellow");
+                dataBox.Items.Add("Lime");
+                dataBox.Items.Add("Pink");
+                dataBox.Items.Add("Gray");
+                dataBox.Items.Add("Light Gray");
+                dataBox.Items.Add("Cyan");
+                dataBox.Items.Add("Purple");
+                dataBox.Items.Add("Blue");
+                dataBox.Items.Add("Brown");
+                dataBox.Items.Add("Green");
+                dataBox.Items.Add("Red");
+                dataBox.Items.Add("Black");
+            }
+            else if (indicator.Equals("DOUBLE_STEP") || indicator.Equals("STEP")) {
+                dataBox.Items.Add("Stone");
+                dataBox.Items.Add("Sandstone");
+                dataBox.Items.Add("Wood");
+                dataBox.Items.Add("Cobblestone");
+                dataBox.Items.Add("Brick");
+                dataBox.Items.Add("Stone Brick");
+                dataBox.Items.Add("Nether Brick");
+                dataBox.Items.Add("Quartz");
+            }
+            else if (indicator.Equals("MONSTER_EGGS")) {
+                dataBox.Items.Add("Stone");
+                dataBox.Items.Add("Cobblestone");
+                dataBox.Items.Add("Stone Brick");
+            }
+            else if (indicator.Equals("SMOOTH_BRICK")) {
+                dataBox.Items.Add("Normal");
+                dataBox.Items.Add("Mossy");
+                dataBox.Items.Add("Cracked");
+                dataBox.Items.Add("Chiseled");
+            }
+            else if (indicator.Equals("COBBLE_WALL")) {
+                dataBox.Items.Add("Normal");
+                dataBox.Items.Add("Mossy");
+            }
+            else if (indicator.Equals("QUARTZ_BLOCK")) {
+                dataBox.Items.Add("Normal");
+                dataBox.Items.Add("Chiseled");
+                dataBox.Items.Add("Pillar");
+            }
+            else if (indicator.Equals("COAL")) {
+                dataBox.Items.Add("Coal");
+                dataBox.Items.Add("Charcoal");
+            }
+            else if (indicator.Equals("GOLDEN_APPLE")) {
+                dataBox.Items.Add("Normal");
+                dataBox.Items.Add("Enchanted");
+            }
+            else if (indicator.Equals("INK_SACK")) {
+                dataBox.Items.Add("Ink Sack");
+                dataBox.Items.Add("Rose Red");
+                dataBox.Items.Add("Cactus Green");
+                dataBox.Items.Add("Coco Beans");
+                dataBox.Items.Add("Lapis Lazuli");
+                dataBox.Items.Add("Purple Dye");
+                dataBox.Items.Add("Cyan Dye");
+                dataBox.Items.Add("Light Gray Dye");
+                dataBox.Items.Add("Gray Dye");
+                dataBox.Items.Add("Pink Dye");
+                dataBox.Items.Add("Lime Dye");
+                dataBox.Items.Add("Dandelion Yellow");
+                dataBox.Items.Add("Light Blue Dye");
+                dataBox.Items.Add("Magenta Dye");
+                dataBox.Items.Add("Orange Dye");
+                dataBox.Items.Add("Bone Meal");
+            }
+            else if (indicator.Equals("POTION")) {
+                dataBox.Items.Add("Water");
+                dataBox.Items.Add("Awkward");
+                dataBox.Items.Add("Thick");
+                dataBox.Items.Add("Mundane");
+                dataBox.Items.Add("Regeneration");
+                dataBox.Items.Add("Swiftness");
+                dataBox.Items.Add("Fire Resistance");
+                dataBox.Items.Add("Poison");
+                dataBox.Items.Add("Healing");
+                dataBox.Items.Add("Night Vision");
+                dataBox.Items.Add("Weakness");
+                dataBox.Items.Add("Strength");
+                dataBox.Items.Add("Slowness");
+                dataBox.Items.Add("Harming");
+                dataBox.Items.Add("Water Breathing");
+                dataBox.Items.Add("Invisibility");
+                dataBox.Items.Add("Splash Regeneration");
+                dataBox.Items.Add("Splash Swiftness");
+                dataBox.Items.Add("Splash Fire Resistance");
+                dataBox.Items.Add("Splash Poison");
+                dataBox.Items.Add("Splash Healing");
+                dataBox.Items.Add("Splash Night Vision");
+                dataBox.Items.Add("Splash Weakness");
+                dataBox.Items.Add("Splash Strength");
+                dataBox.Items.Add("Splash Slowness");
+                dataBox.Items.Add("Splash Harming");
+                dataBox.Items.Add("Splash Water Breathing");
+                dataBox.Items.Add("Splash Invisibility");
+            }
+            else if (indicator.Equals("MONSTER_EGG")) {
+                dataBox.Items.Add("Creeper");
+                dataBox.Items.Add("Skeleton");
+                dataBox.Items.Add("Spider");
+                dataBox.Items.Add("Zombie");
+                dataBox.Items.Add("Slime");
+                dataBox.Items.Add("Ghast");
+                dataBox.Items.Add("Pigman");
+                dataBox.Items.Add("Enderman");
+                dataBox.Items.Add("Cave Spider");
+                dataBox.Items.Add("Silverfish");
+                dataBox.Items.Add("Blaze");
+                dataBox.Items.Add("Magma Cube");
+                dataBox.Items.Add("Bat");
+                dataBox.Items.Add("Witch");
+                dataBox.Items.Add("Pig");
+                dataBox.Items.Add("Sheep");
+                dataBox.Items.Add("Cow");
+                dataBox.Items.Add("Chicken");
+                dataBox.Items.Add("Squid");
+                dataBox.Items.Add("Wolf");
+                dataBox.Items.Add("Mooshroom");
+                dataBox.Items.Add("Ocelot");
+                dataBox.Items.Add("Horse");
+                dataBox.Items.Add("Villager");
+            }
+            else if (indicator.Equals("SKULL") || indicator.Equals("SKULL_ITEM")) {
+                dataBox.Items.Add("Skeleton");
+                dataBox.Items.Add("Wither Skeleton");
+                dataBox.Items.Add("Zombie");
+                dataBox.Items.Add("Human");
+                dataBox.Items.Add("Creeper");
+            }
+            else {
+                dataBox.Items.Add(" ");
+            }
+            dataBox.SelectedIndex = 0;
+        }
+
+        private int GetData() {
+            string indicator = indicatorBox.Text.ToUpper().Replace(" ", "_");
+            int value = dataBox.SelectedIndex;
+            if (indicator.Equals("POTION")) {
+                if (value < 4) value *= 16;
+                else if (value < 16) {
+                    if (value > 12) value += 1;
+                    if (value > 9) value += 1;
+                    value += 8189;
+                }
+                else {
+                    if (value > 24) value += 1;
+                    if (value > 21) value += 1;
+                    value += 16369;
+                }
+            }
+            else if (indicator.Equals("MONSTER_EGG")) {
+                if (value > 22) value += 19;
+                if (value > 21) value++;
+                if (value > 20) value++;
+                if (value > 13) value += 23;
+                if (value > 11) value += 2;
+                if (value > 2) value++;
+                value += 50;
+            }
+            return value;
+        }
+
+        private void ApplyData(int value) {
+            string indicator = indicatorBox.Text.ToUpper().Replace(" ", "_");
+            if (indicator.Equals("POTION")) {
+                if (value < 100) value /= 16;
+                else if (value < 10000) {
+                    value = value - 8189;
+                    if (value > 9) value -= 1;
+                    if (value > 12) value -= 1;
+                }
+                else {
+                    value = value - 16369;
+                    if (value > 21) value -= 1;
+                    if (value > 24) value -= 1;
+                }
+            }
+            else if (indicator.Equals("MONSTER_EGG")) {
+                value -= 50;
+                if (value > 2) value--;
+                if (value > 11) value -= 2;
+                if (value > 13) value -= 23;
+                if (value > 20) value--;
+                if (value > 21) value--;
+                if (value > 22) value = 23;
+            }
+            if (value > 0 && value < dataBox.Items.Count) {
+                dataBox.SelectedIndex = value;
+            }
         }
     }
 }

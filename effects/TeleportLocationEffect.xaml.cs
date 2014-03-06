@@ -22,7 +22,8 @@ namespace SkillAPITool {
         /// </summary>
         public TeleportLocationEffect() {
             InitializeComponent();
-            
+
+            worldBox.TextChanged += Filter.FilterString;
             xBox.TextChanged += Filter.FilterNInt;
             yBox.TextChanged += Filter.FilterNInt;
             zBox.TextChanged += Filter.FilterNInt;

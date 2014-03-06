@@ -117,8 +117,8 @@ namespace SkillAPITool {
         /// <param name="attribute">attribute</param>
         public void ApplyAttribute(Attribute attribute) {
             if (attribute.Key.EndsWith("Heal Per Tick")) {
-                healBaseBox.Text = attribute.Initial.ToString();
-                healBonusBox.Text = attribute.Scale.ToString();
+                healBaseBox.Text = ((int)attribute.Initial).ToString();
+                healBonusBox.Text = ((int)attribute.Scale).ToString();
             }
             else if (attribute.Key.EndsWith("Heal Duration")) {
                 durationBaseBox.Text = attribute.Initial.ToString();

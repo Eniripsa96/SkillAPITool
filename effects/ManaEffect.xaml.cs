@@ -111,8 +111,8 @@ namespace SkillAPITool {
         /// <param name="attribute">attribute</param>
         public void ApplyAttribute(Attribute attribute) {
             if (attribute.Key.EndsWith("Mana Amount")) {
-                manaBaseBox.Text = attribute.Initial.ToString();
-                manaBonusBox.Text = attribute.Scale.ToString();
+                manaBaseBox.Text = ((int)attribute.Initial).ToString();
+                manaBonusBox.Text = ((int)attribute.Scale).ToString();
             }
         }
 

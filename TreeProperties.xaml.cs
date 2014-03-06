@@ -32,6 +32,9 @@ namespace SkillAPITool {
             this.tree = tree;
 
             // Filters
+            nameBox.TextChanged += Filter.FilterString;
+            prefixBox.TextChanged += Filter.FilterString;
+            permissionBox.TextChanged += Filter.FilterString;
             maxLevelBox.TextChanged += Filter.FilterInt;
             professLevelBox.TextChanged += Filter.FilterInt;
             healthBaseBox.TextChanged += Filter.FilterDouble;
@@ -58,6 +61,7 @@ namespace SkillAPITool {
             manaBaseBox.Text = tree.manaBase.ToString();
             manaBonusBox.Text = tree.manaBonus.ToString();
             permissionBox.Text = tree.permissions;
+            needPermBox.SelectedIndex = tree.needsPermission ? 1 : 0;
 
             // Profession options
             foreach (Tree t in MainPage.trees) {
@@ -113,6 +117,7 @@ namespace SkillAPITool {
             tree.manaBase = double.Parse(manaBaseBox.Text);
             tree.manaBonus = double.Parse(manaBonusBox.Text);
             tree.permissions = permissionBox.Text;
+            tree.needsPermission = needPermBox.SelectedIndex == 1;
 
             // Click combos
             if (clickBox.SelectedIndex == 0) {

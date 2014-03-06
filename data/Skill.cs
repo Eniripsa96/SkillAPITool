@@ -36,6 +36,7 @@ namespace SkillAPITool {
         public string permissions = "";
         public int maxLevel = 5;
         public int skillReqLevel = 1;
+        public int indicatorData = 0;
 
         private StringBuilder sb = new StringBuilder();
         public string data;
@@ -163,7 +164,9 @@ namespace SkillAPITool {
             sb.Append(type); 
             sb.Append("\n");
             sb.Append("  indicator: "); 
-            sb.Append(indicator); 
+            sb.Append(indicator);
+            sb.Append(",");
+            sb.Append(indicatorData);
             sb.Append("\n");
             sb.Append("  max-level: "); 
             sb.Append(maxLevel); 
@@ -183,6 +186,7 @@ namespace SkillAPITool {
             if (RequiresItem) {
                 sb.Append("  item-req: "); 
                 sb.Append(itemReq);
+                sb.Append("\n");
             }
 
             // Needs permission

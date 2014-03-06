@@ -126,8 +126,8 @@ namespace SkillAPITool {
         /// <param name="attribute">attribute</param>
         public void ApplyAttribute(Attribute attribute) {
             if (attribute.Key.EndsWith("Percent Reduction")) {
-                percentBaseBox.Text = attribute.Initial.ToString();
-                percentBonusBox.Text = attribute.Scale.ToString();
+                percentBaseBox.Text = ((int)attribute.Initial).ToString();
+                percentBonusBox.Text = ((int)attribute.Scale).ToString();
             }
             else if (attribute.Key.EndsWith("Percent Reduction Duration")) {
                 durationBaseBox.Text = attribute.Initial.ToString();

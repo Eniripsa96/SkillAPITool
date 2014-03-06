@@ -114,8 +114,8 @@ namespace SkillAPITool {
         /// <param name="attribute">attribute</param>
         public void ApplyAttribute(Attribute attribute) {
             if (attribute.Key.EndsWith("Percent")) {
-                damageBaseBox.Text = attribute.Initial.ToString();
-                damageBonusBox.Text = attribute.Scale.ToString();
+                damageBaseBox.Text = ((int)attribute.Initial).ToString();
+                damageBonusBox.Text = ((int)attribute.Scale).ToString();
             }
             else if (attribute.Key.EndsWith("Percent Duration")) {
                 durationBaseBox.Text = attribute.Initial.ToString();

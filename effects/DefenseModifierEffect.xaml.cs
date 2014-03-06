@@ -125,8 +125,8 @@ namespace SkillAPITool {
                 durationBonusBox.Text = attribute.Scale.ToString();
             }
             else if (attribute.Key.EndsWith("Attacks")) {
-                attackBaseBox.Text = attribute.Initial.ToString();
-                attackBonusBox.Text = attribute.Scale.ToString();
+                attackBaseBox.Text = ((int)attribute.Initial).ToString();
+                attackBonusBox.Text = ((int)attribute.Scale).ToString();
             }
             else if (attribute.Key.EndsWith("Modifier Chance")) {
                 chanceBaseBox.Text = attribute.Initial.ToString();

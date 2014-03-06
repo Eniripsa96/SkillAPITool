@@ -110,12 +110,12 @@ namespace SkillAPITool {
                 speedBonusBox.Text = attribute.Scale.ToString();
             }
             else if (attribute.Key.EndsWith("Spread Angle")) {
-                angleBaseBox.Text = attribute.Initial.ToString();
-                angleBonusBox.Text = attribute.Scale.ToString();
+                angleBaseBox.Text = ((int)attribute.Initial).ToString();
+                angleBonusBox.Text = ((int)attribute.Scale).ToString();
             }
             else if (attribute.Key.EndsWith("Projectile Quantity")) {
-                amountBaseBox.Text = attribute.Initial.ToString();
-                amountBonusBox.Text = attribute.Scale.ToString();
+                amountBaseBox.Text = ((int)attribute.Initial).ToString();
+                amountBonusBox.Text = ((int)attribute.Scale).ToString();
             }
         }
 

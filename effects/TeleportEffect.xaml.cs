@@ -116,12 +116,12 @@ namespace SkillAPITool {
         /// <param name="attribute">attribute</param>
         public void ApplyAttribute(Attribute attribute) {
             if (attribute.Key.EndsWith("Vertical Distance")) {
-                verticalBaseBox.Text = attribute.Initial.ToString();
-                verticalBonusBox.Text = attribute.Scale.ToString();
+                verticalBaseBox.Text = ((int)attribute.Initial).ToString();
+                verticalBonusBox.Text = ((int)attribute.Scale).ToString();
             }
             else if (attribute.Key.EndsWith("Horizontal Distance")) {
-                horizontalBaseBox.Text = attribute.Initial.ToString();
-                horizontalBonusBox.Text = attribute.Scale.ToString();
+                horizontalBaseBox.Text = ((int)attribute.Initial).ToString();
+                horizontalBonusBox.Text = ((int)attribute.Scale).ToString();
             }
         }
 
